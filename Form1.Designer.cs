@@ -86,7 +86,7 @@
             this.cbMethodType.Location = new System.Drawing.Point(12, 128);
             this.cbMethodType.Name = "cbMethodType";
             this.cbMethodType.Size = new System.Drawing.Size(165, 21);
-            this.cbMethodType.TabIndex = 3;
+            this.cbMethodType.TabIndex = 1;
             // 
             // rb_min
             // 
@@ -94,7 +94,7 @@
             this.rb_min.Location = new System.Drawing.Point(183, 76);
             this.rb_min.Name = "rb_min";
             this.rb_min.Size = new System.Drawing.Size(72, 17);
-            this.rb_min.TabIndex = 4;
+            this.rb_min.TabIndex = 3;
             this.rb_min.TabStop = true;
             this.rb_min.Text = "минимум";
             this.rb_min.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             this.rb_max.Location = new System.Drawing.Point(183, 99);
             this.rb_max.Name = "rb_max";
             this.rb_max.Size = new System.Drawing.Size(78, 17);
-            this.rb_max.TabIndex = 5;
+            this.rb_max.TabIndex = 4;
             this.rb_max.TabStop = true;
             this.rb_max.Text = "максимум";
             this.rb_max.UseVisualStyleBackColor = true;
@@ -122,14 +122,14 @@
             this.tb_start.Location = new System.Drawing.Point(279, 57);
             this.tb_start.Name = "tb_start";
             this.tb_start.Size = new System.Drawing.Size(100, 20);
-            this.tb_start.TabIndex = 7;
+            this.tb_start.TabIndex = 5;
             // 
             // tb_currency
             // 
             this.tb_currency.Location = new System.Drawing.Point(513, 57);
             this.tb_currency.Name = "tb_currency";
             this.tb_currency.Size = new System.Drawing.Size(100, 20);
-            this.tb_currency.TabIndex = 8;
+            this.tb_currency.TabIndex = 7;
             // 
             // label3
             // 
@@ -181,7 +181,7 @@
             this.bt_calculate.Location = new System.Drawing.Point(268, 133);
             this.bt_calculate.Name = "bt_calculate";
             this.bt_calculate.Size = new System.Drawing.Size(111, 23);
-            this.bt_calculate.TabIndex = 14;
+            this.bt_calculate.TabIndex = 8;
             this.bt_calculate.Text = "Подсчитать";
             this.bt_calculate.UseVisualStyleBackColor = true;
             this.bt_calculate.Click += new System.EventHandler(this.bt_calculate_Click);

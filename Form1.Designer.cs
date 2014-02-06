@@ -58,6 +58,7 @@
             // 
             // cbFunctionType
             // 
+            this.cbFunctionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFunctionType.Location = new System.Drawing.Point(12, 57);
             this.cbFunctionType.Name = "cbFunctionType";
             this.cbFunctionType.Size = new System.Drawing.Size(121, 21);
@@ -83,6 +84,7 @@
             // 
             // cbMethodType
             // 
+            this.cbMethodType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMethodType.Location = new System.Drawing.Point(12, 128);
             this.cbMethodType.Name = "cbMethodType";
             this.cbMethodType.Size = new System.Drawing.Size(165, 21);
@@ -190,15 +192,17 @@
             // 
             this.tb_res.Location = new System.Drawing.Point(513, 102);
             this.tb_res.Name = "tb_res";
+            this.tb_res.ReadOnly = true;
             this.tb_res.Size = new System.Drawing.Size(100, 20);
-            this.tb_res.TabIndex = 15;
+            this.tb_res.TabIndex = 9;
             // 
             // tb_func_res
             // 
             this.tb_func_res.Location = new System.Drawing.Point(513, 135);
             this.tb_func_res.Name = "tb_func_res";
+            this.tb_func_res.ReadOnly = true;
             this.tb_func_res.Size = new System.Drawing.Size(100, 20);
-            this.tb_func_res.TabIndex = 16;
+            this.tb_func_res.TabIndex = 10;
             // 
             // panel1
             // 
@@ -300,6 +304,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbFunctionType);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

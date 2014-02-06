@@ -67,6 +67,10 @@
 
             for (int i = 0; b > a; i++, a = a + step)
             {
+                if (i == N)
+                {
+                    break;
+                }
                 temp[i, 0] = a;
                 temp[i, 1] = this.Y(a);
                 temp[i, 2] = 0;

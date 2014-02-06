@@ -24,8 +24,7 @@
 
             while (Math.Abs(b - a) > e)
             {
-		//hui
-		x1 = b - (b - a) / BaseMethod.F;
+                x1 = b - (b - a) / BaseMethod.F;
                 x2 = a + (b - a) / BaseMethod.F;
                 y1 = this.Y(x1);
                 y2 = this.Y(x2);

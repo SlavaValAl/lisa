@@ -60,14 +60,14 @@
             float a = (float)this.A;
             float b = (float)this.B;
 
-            int N = (int)Math.Round(Math.Abs(b - a) / step) + 2;
+            int N = (int)Math.Round(Math.Abs(b - a) / step) + 1;
             Form1.searcheablePointList = new List<Point>(N);
 
             var temp = new float[N, 3];
 
             for (int i = 0; b > a; i++, a = a + step)
             {
-                if (i == N)
+                if (N == i)
                 {
                     break;
                 }
@@ -76,7 +76,6 @@
                 temp[i, 2] = 0;
                 Form1.searcheablePointList.Add(new Point(a, temp[i, 1]));
             }
-
             return temp;
         }
     }

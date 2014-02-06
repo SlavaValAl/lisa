@@ -168,9 +168,30 @@
                 Color = Color.Green
             };
 
+            float[,] start = new float[2, 3];
+            float[,] end = new float[2, 3];
+            var copy = StepPointList.First();
+            Array.Copy(StepPointList.ElementAt(index), start, 3);
+            Array.Copy(StepPointList.ElementAt(index), StepPointList.ElementAt(index).Length - 7, end, 2, 3);
+            start[1, 0] = start[0, 0];
+            start[0, 1] = 0;
+            start[1, 1] = end[1, 1];
+            end[0, 0] = end[1, 0];
+            end[0, 1] = 0;
+
+            var startLine = new ILLines
+            {
+                Positions = start,
+                Color = Color.Red
+            };
+            var endLine = new ILLines
+            {
+                Positions = end,
+                Color = Color.Red
+            };
             var scene = new ILScene {
         new ILPlotCube(twoDMode: true) {
-            ilStartPoints, ilstepPoint
+            ilStartPoints, ilstepPoint, startLine, endLine
         }
     };
             var pcsm = scene.First<ILPlotCube>().ScaleModes;

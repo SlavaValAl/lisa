@@ -3,7 +3,10 @@
 *.config
 *.csproj
 *~
+*.user
 properties/
 bin/
 obj/
-
+bin32/
+bin64/
+packages/

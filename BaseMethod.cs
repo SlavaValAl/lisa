@@ -1,4 +1,4 @@
-﻿namespace optimization
+﻿namespace diplom
 {
     using System;
     using System.Collections.Generic;

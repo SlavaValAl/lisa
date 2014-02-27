@@ -1,4 +1,4 @@
-﻿namespace optimization
+﻿namespace diplom
 {
     partial class Form1
     {

@@ -30,8 +30,13 @@
             cbFunctionType.ValueMember = "Key";
             cbFunctionType.DisplayMember = "Value";
             cbFunctionType.SelectedValue = "1";
-
+                       
             TurnOffControlButton();
+
+            cb_mode.DataSource = GetModeList();
+            cb_mode.ValueMember = "Key";
+            cb_mode.DisplayMember = "Value";
+            cb_mode.SelectedValue = "1";
 
             cbMethodType.DataSource = GetMethodList();
             cbMethodType.ValueMember = "Key";
@@ -62,6 +67,31 @@
             double temp_end;
             double temp_cur;
 
+            switch ((string)cb_mode.SelectedValue)
+            {
+                case "1":
+                    {
+                        p_dynamic.Visible = true;
+                        p_step.Visible = false;
+                        p_static.Visible = false;
+                        break;
+                    }
+                case "2":
+                    {
+                        p_dynamic.Visible = false;
+                        p_step.Visible = true;
+                        p_static.Visible = false;
+                        break;
+                    }
+                case "3":
+                    {
+                        p_dynamic.Visible = false;
+                        p_step.Visible = false;
+                        p_static.Visible = true;
+                        break;
+                    }
+            }
+                        
             try
             {
                 try
@@ -90,6 +120,8 @@
 
                 calcmt.SetValues(temp_start, temp_end, temp_cur, tempDelegate);
                 calcmt.Calculate(mt);
+
+                
 
                 //some magic
                 pointList = calcmt.GetPoints();
@@ -152,20 +184,30 @@
             };
         }
 
+        private List<KeyValuePair<string, string>> GetModeList()
+        {
+            return new List<KeyValuePair<string, string>>(10)
+            {
+                new KeyValuePair<string, string>("1","Динамический"),
+                new KeyValuePair<string, string>("2","Пошаговый"),
+                new KeyValuePair<string, string>("3","Статичексий"),
+            };
+        }
+
         private void DrawGraph()
         {
             var ilStartPoints = new ILPoints()
             {
                 Positions = pointList,
                 Size = 1,
-                Color = Color.Red
+                Color = Color.Teal
             };
 
             var ilstepPoint = new ILPoints()
             {
                 Positions = StepPointList.ElementAt(index),
                 Size = 1,
-                Color = Color.Green
+                Color = Color.PowderBlue
             };
 
             float[,] start = new float[2, 3];
@@ -182,12 +224,14 @@
             var startLine = new ILLines
             {
                 Positions = start,
-                Color = Color.Red
+                Width = 2,
+                Color = Color.MediumVioletRed
             };
             var endLine = new ILLines
             {
                 Positions = end,
-                Color = Color.Red
+                Width = 2,
+                Color = Color.MediumVioletRed
             };
             var scene = new ILScene {
         new ILPlotCube(twoDMode: true) {
@@ -234,5 +278,6 @@
             this.bt_previousStep.Enabled = true;
             this.DrawGraph();
         }
+
     }
 }

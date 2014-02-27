@@ -40,7 +40,10 @@
             x2 = a + dx * IndexValueList[N - 1];
             y2 = this.Y(x2);
 
-            this.StepsArray = new List<Segment>();
+            if (mType.HasFlag(MethodType.Minimum))
+            {
+                this.StepsArray = new List<Segment>();
+            }
 
             for (int j = 1; j <= (N - 3); j++)
             {

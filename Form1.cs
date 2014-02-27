@@ -131,6 +131,7 @@
                 pointList = calcmt.GetPoints();
                 stepList = calcmt.GetSteps();
                 FillStepPointRangeList();
+                index = 0;
                 DrawGraph();
                 TurnOnControlButton();
                 //some magic

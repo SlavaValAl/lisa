@@ -17,8 +17,10 @@
             float x1 = 0;
             float y1 = 0;
             float y2 = 0;
-
-            this.StepsArray = new List<Segment>();
+            if (mType.HasFlag(MethodType.Minimum))
+            {
+                this.StepsArray = new List<Segment>();
+            }
 
             while (Math.Abs(b - a) > e)
             {

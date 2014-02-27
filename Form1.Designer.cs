@@ -317,7 +317,7 @@
             // 
             this.t_speed.Location = new System.Drawing.Point(0, 0);
             this.t_speed.Name = "t_speed";
-            this.t_speed.Size = new System.Drawing.Size(104, 45);
+            this.t_speed.Size = new System.Drawing.Size(104, 42);
             this.t_speed.TabIndex = 0;
             // 
             // p_results
@@ -452,7 +452,7 @@
             // 
             this.trackBar2.Location = new System.Drawing.Point(3, 3);
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(279, 45);
+            this.trackBar2.Size = new System.Drawing.Size(279, 42);
             this.trackBar2.TabIndex = 0;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -460,7 +460,7 @@
             // 
             this.trackBar1.Location = new System.Drawing.Point(0, 1);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(290, 45);
+            this.trackBar1.Size = new System.Drawing.Size(290, 42);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -520,6 +520,7 @@
             this.bt_pause.Size = new System.Drawing.Size(65, 65);
             this.bt_pause.TabIndex = 1;
             this.bt_pause.UseVisualStyleBackColor = true;
+            this.bt_pause.Click += new System.EventHandler(this.bt_pause_Click);
             // 
             // bt_start
             // 
@@ -531,6 +532,7 @@
             this.bt_start.Size = new System.Drawing.Size(65, 65);
             this.bt_start.TabIndex = 1;
             this.bt_start.UseVisualStyleBackColor = true;
+            this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
             // 
             // bt_stop
             // 
@@ -542,12 +544,13 @@
             this.bt_stop.Size = new System.Drawing.Size(65, 65);
             this.bt_stop.TabIndex = 1;
             this.bt_stop.UseVisualStyleBackColor = true;
+            this.bt_stop.Click += new System.EventHandler(this.bt_stop_Click);
             // 
             // t_sreed
             // 
             this.t_sreed.Location = new System.Drawing.Point(0, 3);
             this.t_sreed.Name = "t_sreed";
-            this.t_sreed.Size = new System.Drawing.Size(287, 45);
+            this.t_sreed.Size = new System.Drawing.Size(287, 42);
             this.t_sreed.TabIndex = 0;
             this.t_sreed.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -556,7 +559,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1184, 467);
+            this.ClientSize = new System.Drawing.Size(1194, 480);
             this.Controls.Add(this.p_dynamic);
             this.Controls.Add(this.p_step);
             this.Controls.Add(this.p_static);

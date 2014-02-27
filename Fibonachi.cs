@@ -62,8 +62,10 @@
                     x2 = a + b - x1;
                     y2 = this.Y(x2);
                 }
-
-                this.AddStep(a, b);
+                if (mType.HasFlag(MethodType.Minimum))
+                {
+                    this.AddStep(a, b);
+                }
             }
 
             if (Compare(mType, y1, y2))
@@ -79,7 +81,10 @@
             x1 = x2 - D;
             y1 = this.Y(x1);
 
-            this.AddStep(a, b);
+            if (mType.HasFlag(MethodType.Minimum))
+            {
+                this.AddStep(a, b);
+            }
 
             if (Compare(mType, y1, y2))
             {
@@ -91,8 +96,10 @@
             }
 
             answer = (a + b) / 2;
-
-            this.AddStep(answer, answer);
+            if (mType.HasFlag(MethodType.Minimum))
+            {
+                this.AddStep(answer, answer);
+            }
 
             switch (mType)
             {

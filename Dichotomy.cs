@@ -34,12 +34,17 @@
                 {
                     a = x1;
                 }
-
-                this.AddStep(a, b);
+                if (mType.HasFlag(MethodType.Minimum))
+                {
+                    this.AddStep(a, b);
+                }
 
                 answer = (a + b) / 2;
             }
-            this.AddStep(answer, answer);
+            if (mType.HasFlag(MethodType.Minimum))
+            {
+                this.AddStep(answer, answer);
+            }
 
             switch (mType)
             {

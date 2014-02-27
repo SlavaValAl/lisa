@@ -11,11 +11,18 @@
         protected double A { get; set; }
         protected double B { get; set; }
         protected double E { get; set; }
-        protected float Min { get; set; }
-        protected float Max { get; set; }
+        public float Min { get; set; }
+        public float Max { get; set; }
         protected const float F = 1.618F;
         protected MyDel Y { get; set; }
         protected List<Segment> StepsArray { get; set; }
+
+        public float GetYbyX(float x)
+        {
+            return this.Y(x);
+
+        }
+
 
         public void SetValues(double start, double end, double cur, MyDel y)
         {
@@ -76,9 +83,27 @@
                 temp[i, 2] = 0;
                 Form1.searcheablePointList.Add(new Point(a, temp[i, 1]));
             }
-            return temp;
+            return DeleteEmptyElements(temp);
+        }
+
+        private float[,] DeleteEmptyElements(float[,] temp)
+        {
+            var emptynum = 0;
+            var n = temp.GetLength(0) - 4;
+            while (n != temp.GetLength(0) - 1)
+            {
+                if (temp[n, 0] == 0 && temp[n, 1] == 0)
+                {
+                    emptynum++;
+                }
+                n++;
+            }
+            var resultarray = new float[temp.GetLength(0) - emptynum, 3];
+            Array.Copy(temp, 0, resultarray, 0, temp.Length - emptynum * 3 - 1);
+            return resultarray;
         }
     }
+
 
     public struct Segment
     {

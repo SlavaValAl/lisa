@@ -22,6 +22,7 @@
         static float[,] pointList;
         public static List<Point> searcheablePointList;
         List<float[,]> StepPointList;
+        static Minimax result;
 
         public Form1()
         {
@@ -30,7 +31,7 @@
             cbFunctionType.ValueMember = "Key";
             cbFunctionType.DisplayMember = "Value";
             cbFunctionType.SelectedValue = "1";
-                       
+
             TurnOffControlButton();
 
             cb_mode.DataSource = GetModeList();
@@ -91,7 +92,7 @@
                         break;
                     }
             }
-                        
+
             try
             {
                 try
@@ -120,8 +121,11 @@
 
                 calcmt.SetValues(temp_start, temp_end, temp_cur, tempDelegate);
                 calcmt.Calculate(mt);
+                calcmt.Calculate(MethodType.Maximum);
+                results_massiv = calcmt.GetResults(mt);
 
-                
+                result.min = calcmt.GetYbyX(calcmt.Min) - 1;
+                result.max = calcmt.GetYbyX(calcmt.Max) + 1;
 
                 //some magic
                 pointList = calcmt.GetPoints();
@@ -131,7 +135,8 @@
                 TurnOnControlButton();
                 //some magic
 
-                results_massiv = calcmt.GetResults(mt);
+
+
                 tb_res.Text = results_massiv[0].Substring(0, 7);
                 tb_func_res.Text = results_massiv[1].Substring(0, 7);
             }
@@ -210,32 +215,33 @@
                 Color = Color.PowderBlue
             };
 
+            index = (index == StepPointList.Count - 1) ? index - 1 : index;
+
             float[,] start = new float[2, 3];
             float[,] end = new float[2, 3];
-            var copy = StepPointList.First();
             Array.Copy(StepPointList.ElementAt(index), start, 3);
             Array.Copy(StepPointList.ElementAt(index), StepPointList.ElementAt(index).Length - 7, end, 2, 3);
             start[1, 0] = start[0, 0];
-            start[0, 1] = 0;
-            start[1, 1] = end[1, 1];
+            start[0, 1] = result.min;
+            start[1, 1] = result.max;
             end[0, 0] = end[1, 0];
-            end[0, 1] = 0;
+            end[0, 1] = result.min;
+            end[1, 1] = result.max;
 
-            var startLine = new ILLines
+            float[,] ex = new float[4, 3];
+            Array.Copy(start, ex, 6);
+            Array.Copy(end, 0, ex, 6, 6);
+
+            var exLine = new ILLines
             {
-                Positions = start,
-                Width = 2,
+                Positions = ex,
+                Width = 1,
                 Color = Color.MediumVioletRed
             };
-            var endLine = new ILLines
-            {
-                Positions = end,
-                Width = 2,
-                Color = Color.MediumVioletRed
-            };
+
             var scene = new ILScene {
         new ILPlotCube(twoDMode: true) {
-            ilStartPoints, ilstepPoint, startLine, endLine
+            ilStartPoints, ilstepPoint, exLine
         }
     };
             var pcsm = scene.First<ILPlotCube>().ScaleModes;
@@ -245,6 +251,7 @@
 
             this.ilPanel1.Scene = scene;
             this.ilPanel1.Refresh();
+
         }
 
         private void bt_firstStep_Click(object sender, EventArgs e)
@@ -277,6 +284,27 @@
             this.bt_nextStep.Enabled = false;
             this.bt_previousStep.Enabled = true;
             this.DrawGraph();
+        }
+
+        private void bt_stop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_start_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_pause_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        struct Minimax
+        {
+            public float min;
+            public float max;
         }
 
     }

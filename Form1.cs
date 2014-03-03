@@ -183,13 +183,13 @@
             };
         }
 
-        private List<KeyValuePair<int, string>> GetModeList()
+        private IEnumerable<KeyValuePair<int, string>> GetModeList()
         {
             return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<int, string>(1,"Динамический"),
+                new KeyValuePair<int, string>(1,"Автоматический"),
                 new KeyValuePair<int, string>(2,"Пошаговый"),
-                new KeyValuePair<int, string>(3,"Статический"),
+                new KeyValuePair<int, string>(3,"Статический")
             };
         }
 
@@ -295,15 +295,15 @@
 
         }
 
-        private void bt_refresh_Click(object sender, EventArgs e)
-        {
-            this.ilPanel1.Refresh();
-        }
-
         struct Minimax
         {
             public float min;
             public float max;
+        }
+
+        private void bt_refresh_Click(object sender, EventArgs e)
+        {
+            this.ilPanel1.Refresh();
         }
 
     }

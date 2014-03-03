@@ -238,14 +238,17 @@
             ilStartPoints, ilstepPoint, exLine
         }
     };
+            this.ilPanel1.Scene = SetScaleModes(scene);
+            this.ilPanel1.Refresh();
+        }
+
+        private static ILScene SetScaleModes(ILScene scene)
+        {
             var pcsm = scene.First<ILPlotCube>().ScaleModes;
             pcsm.XAxisScale = AxisScale.Linear;
             pcsm.YAxisScale = AxisScale.Linear;
             pcsm.ZAxisScale = AxisScale.Linear;
-
-            this.ilPanel1.Scene = scene;
-            this.ilPanel1.Refresh();
-
+            return scene;
         }
 
         private void bt_firstStep_Click(object sender, EventArgs e)
@@ -303,8 +306,7 @@
 
         private void bt_refresh_Click(object sender, EventArgs e)
         {
-            this.ilPanel1.Refresh();
+            DrawGraph();
         }
-
     }
 }

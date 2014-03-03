@@ -47,6 +47,7 @@
             this.tb_res = new System.Windows.Forms.TextBox();
             this.tb_func_res = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bt_refresh = new System.Windows.Forms.Button();
             this.ilPanel1 = new ILNumerics.Drawing.ILPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cb_mode = new System.Windows.Forms.ComboBox();
@@ -247,11 +248,25 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bt_refresh);
             this.panel1.Controls.Add(this.ilPanel1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(597, 444);
             this.panel1.TabIndex = 17;
+            // 
+            // bt_refresh
+            // 
+            this.bt_refresh.BackColor = System.Drawing.SystemColors.Control;
+            this.bt_refresh.FlatAppearance.BorderSize = 0;
+            this.bt_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_refresh.Image = global::diplom.Properties.Resources.refresh;
+            this.bt_refresh.Location = new System.Drawing.Point(545, 388);
+            this.bt_refresh.Name = "bt_refresh";
+            this.bt_refresh.Size = new System.Drawing.Size(36, 36);
+            this.bt_refresh.TabIndex = 26;
+            this.bt_refresh.UseVisualStyleBackColor = false;
+            this.bt_refresh.Click += new System.EventHandler(this.bt_refresh_Click);
             // 
             // ilPanel1
             // 
@@ -317,7 +332,7 @@
             // 
             this.t_speed.Location = new System.Drawing.Point(0, 0);
             this.t_speed.Name = "t_speed";
-            this.t_speed.Size = new System.Drawing.Size(104, 42);
+            this.t_speed.Size = new System.Drawing.Size(104, 45);
             this.t_speed.TabIndex = 0;
             // 
             // p_results
@@ -452,7 +467,7 @@
             // 
             this.trackBar2.Location = new System.Drawing.Point(3, 3);
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(279, 42);
+            this.trackBar2.Size = new System.Drawing.Size(279, 45);
             this.trackBar2.TabIndex = 0;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -460,7 +475,7 @@
             // 
             this.trackBar1.Location = new System.Drawing.Point(0, 1);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(290, 42);
+            this.trackBar1.Size = new System.Drawing.Size(290, 45);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -550,7 +565,7 @@
             // 
             this.t_sreed.Location = new System.Drawing.Point(0, 3);
             this.t_sreed.Name = "t_sreed";
-            this.t_sreed.Size = new System.Drawing.Size(287, 42);
+            this.t_sreed.Size = new System.Drawing.Size(287, 45);
             this.t_sreed.TabIndex = 0;
             this.t_sreed.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -559,7 +574,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1194, 480);
+            this.ClientSize = new System.Drawing.Size(1184, 467);
             this.Controls.Add(this.p_dynamic);
             this.Controls.Add(this.p_step);
             this.Controls.Add(this.p_static);
@@ -638,6 +653,7 @@
         private System.Windows.Forms.Button bt_stop;
         private System.Windows.Forms.Button bt_pause;
         private System.Windows.Forms.Button bt_start;
+        private System.Windows.Forms.Button bt_refresh;
 
 
     }

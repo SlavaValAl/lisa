@@ -189,7 +189,7 @@
         {
             return new List<KeyValuePair<string, string>>(10)
             {
-                new KeyValuePair<string, string>("1","Динамический"),
+                new KeyValuePair<string, string>("1","Автоматический"),
                 new KeyValuePair<string, string>("2","Пошаговый"),
                 new KeyValuePair<string, string>("3","Статический"),
             };
@@ -297,15 +297,15 @@
 
         }
 
-        private void bt_refresh_Click(object sender, EventArgs e)
-        {
-            this.ilPanel1.Refresh();
-        }
-
         struct Minimax
         {
             public float min;
             public float max;
+        }
+
+        private void bt_refresh_Click(object sender, EventArgs e)
+        {
+            this.ilPanel1.Refresh();
         }
 
     }

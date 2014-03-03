@@ -297,6 +297,11 @@
 
         }
 
+        private void bt_refresh_Click(object sender, EventArgs e)
+        {
+            this.ilPanel1.Refresh();
+        }
+
         struct Minimax
         {
             public float min;

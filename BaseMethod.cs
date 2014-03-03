@@ -15,12 +15,12 @@
         public float Max { get; set; }
         protected const float F = 1.618F;
         protected MyDel Y { get; set; }
-        protected List<Segment> StepsArray { get; set; }
+        protected List<Segment> minStepsArray = new List<Segment>();
+        protected List<Segment> maxStepsArray = new List<Segment>();
 
         public float GetYbyX(float x)
         {
             return this.Y(x);
-
         }
 
 
@@ -32,8 +32,14 @@
             this.Y = y;
         }
 
-        public virtual void Calculate(MethodType mType)
+        public virtual void CalculateByType(MethodType mType)
         { }
+
+        public void Calculate()
+        {
+            this.CalculateByType(MethodType.Maximum);
+            this.CalculateByType(MethodType.Minimum);
+        }
 
         public string[] GetResults(MethodType mt)
         {
@@ -51,14 +57,21 @@
                     };
         }
 
-        public List<Segment> GetSteps()
+        public List<Segment> GetSteps(MethodType mt)
         {
-            return this.StepsArray;
+            return mt.HasFlag(MethodType.Maximum) ? this.maxStepsArray : this.minStepsArray;
         }
 
-        public void AddStep(float x1, float x2)
+        public void AddStep(float x1, float x2, MethodType mt)
         {
-            this.StepsArray.Add(new Segment(x1, x2));
+            switch (mt)
+            {
+                case MethodType.Minimum: this.minStepsArray.Add(new Segment(x1, x2));
+                    break;
+                case MethodType.Maximum: this.maxStepsArray.Add(new Segment(x1, x2));
+                    break;
+                default: throw new FormatException("Unexpected enumerator MethodType value");
+            }
         }
 
         public float[,] GetPoints()

@@ -106,8 +106,6 @@
                     throw new Exception("Неверное значение полей для ввода");
                 }
 
-
-
                 var mt = rb_max.Checked ? MethodType.Maximum : MethodType.Minimum;
                 var funcNum = (string)cbFunctionType.SelectedValue;
                 var method_num = (string)cbMethodType.SelectedValue;
@@ -120,8 +118,7 @@
                 var calcmt = MethodFabric.GetMethodType(method_num);
 
                 calcmt.SetValues(temp_start, temp_end, temp_cur, tempDelegate);
-                calcmt.Calculate(mt);
-                calcmt.Calculate(MethodType.Maximum);
+                calcmt.Calculate();
                 results_massiv = calcmt.GetResults(mt);
 
                 result.min = calcmt.GetYbyX(calcmt.Min) - 1;
@@ -129,14 +126,12 @@
 
                 //some magic
                 pointList = calcmt.GetPoints();
-                stepList = calcmt.GetSteps();
+                stepList = calcmt.GetSteps(mt);
                 FillStepPointRangeList();
                 index = 0;
                 DrawGraph();
                 TurnOnControlButton();
                 //some magic
-
-
 
                 tb_res.Text = results_massiv[0].Substring(0, 7);
                 tb_func_res.Text = results_massiv[1].Substring(0, 7);
@@ -196,7 +191,7 @@
             {
                 new KeyValuePair<string, string>("1","Динамический"),
                 new KeyValuePair<string, string>("2","Пошаговый"),
-                new KeyValuePair<string, string>("3","Статичексий"),
+                new KeyValuePair<string, string>("3","Статический"),
             };
         }
 

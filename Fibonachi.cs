@@ -8,7 +8,7 @@
 
     public class Fibonachi : BaseMethod
     {
-        public override void Calculate(MethodType mType)
+        public override void CalculateByType(MethodType mType)
         {
             float answer = 0;
             float a = (float)this.A;
@@ -42,7 +42,7 @@
 
             if (mType.HasFlag(MethodType.Minimum))
             {
-                this.StepsArray = new List<Segment>();
+                this.minStepsArray = new List<Segment>();
             }
 
             for (int j = 1; j <= (N - 3); j++)
@@ -65,10 +65,7 @@
                     x2 = a + b - x1;
                     y2 = this.Y(x2);
                 }
-                if (mType.HasFlag(MethodType.Minimum))
-                {
-                    this.AddStep(a, b);
-                }
+                this.AddStep(a, b, mType);
             }
 
             if (Compare(mType, y1, y2))
@@ -84,10 +81,7 @@
             x1 = x2 - D;
             y1 = this.Y(x1);
 
-            if (mType.HasFlag(MethodType.Minimum))
-            {
-                this.AddStep(a, b);
-            }
+            this.AddStep(a, b, mType);
 
             if (Compare(mType, y1, y2))
             {
@@ -99,10 +93,8 @@
             }
 
             answer = (a + b) / 2;
-            if (mType.HasFlag(MethodType.Minimum))
-            {
-                this.AddStep(answer, answer);
-            }
+
+            this.AddStep(answer, answer, mType);
 
             switch (mType)
             {

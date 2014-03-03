@@ -8,7 +8,7 @@
 
     class Dichotomy : BaseMethod
     {
-        public override void Calculate(MethodType mType)
+        public override void CalculateByType(MethodType mType)
         {
             float answer = 0;
             float a = (float)this.A;
@@ -19,7 +19,7 @@
             float y2 = 0;
             if (mType.HasFlag(MethodType.Minimum))
             {
-                this.StepsArray = new List<Segment>();
+                this.minStepsArray = new List<Segment>();
             }
 
             while (Math.Abs(b - a) > e)
@@ -36,17 +36,11 @@
                 {
                     a = x1;
                 }
-                if (mType.HasFlag(MethodType.Minimum))
-                {
-                    this.AddStep(a, b);
-                }
+                this.AddStep(a, b, mType);
 
                 answer = (a + b) / 2;
             }
-            if (mType.HasFlag(MethodType.Minimum))
-            {
-                this.AddStep(answer, answer);
-            }
+            this.AddStep(answer, answer, mType);
 
             switch (mType)
             {

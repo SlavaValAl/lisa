@@ -30,19 +30,19 @@
             cbFunctionType.DataSource = GetFunctionList();
             cbFunctionType.ValueMember = "Key";
             cbFunctionType.DisplayMember = "Value";
-            cbFunctionType.SelectedValue = "1";
+            cbFunctionType.SelectedIndex = 0;
 
             TurnOffControlButton();
 
             cb_mode.DataSource = GetModeList();
             cb_mode.ValueMember = "Key";
             cb_mode.DisplayMember = "Value";
-            cb_mode.SelectedValue = "1";
+            cb_mode.SelectedIndex = 0;
 
             cbMethodType.DataSource = GetMethodList();
             cbMethodType.ValueMember = "Key";
             cbMethodType.DisplayMember = "Value";
-            cbMethodType.SelectedValue = "1";
+            cbMethodType.SelectedIndex = 0;
             rb_min.Checked = true;
         }
 
@@ -68,29 +68,31 @@
             double temp_end;
             double temp_cur;
 
-            switch ((string)cb_mode.SelectedValue)
+            switch (((KeyValuePair<int, string>)cb_mode.SelectedItem).Key)
             {
-                case "1":
+                case 1:
                     {
                         p_dynamic.Visible = true;
                         p_step.Visible = false;
                         p_static.Visible = false;
                         break;
                     }
-                case "2":
+                case 2:
                     {
                         p_dynamic.Visible = false;
                         p_step.Visible = true;
                         p_static.Visible = false;
                         break;
                     }
-                case "3":
+                case 3:
                     {
                         p_dynamic.Visible = false;
                         p_step.Visible = false;
                         p_static.Visible = true;
                         break;
                     }
+                default:
+                    break;
             }
 
             try
@@ -107,17 +109,12 @@
                 }
 
                 var mt = rb_max.Checked ? MethodType.Maximum : MethodType.Minimum;
-                var funcNum = (string)cbFunctionType.SelectedValue;
-                var method_num = (string)cbMethodType.SelectedValue;
-                if (string.IsNullOrEmpty(funcNum) || string.IsNullOrEmpty(method_num))
-                {
-                    MessageBox.Show("Некорректные значения списков");
-                    return;
-                }
-                var tempDelegate = FunctionLibrary.GetFunction(funcNum);
+                var funcNum = ((KeyValuePair<int, string>)cbFunctionType.SelectedItem).Key;
+                var method_num = ((KeyValuePair<int, string>)cbMethodType.SelectedItem).Key;
+
                 var calcmt = MethodFabric.GetMethodType(method_num);
 
-                calcmt.SetValues(temp_start, temp_end, temp_cur, tempDelegate);
+                calcmt.SetValues(temp_start, temp_end, temp_cur, FunctionLibrary.GetFunction(funcNum));
                 calcmt.Calculate();
                 results_massiv = calcmt.GetResults(mt);
 
@@ -133,6 +130,7 @@
                 TurnOnControlButton();
                 //some magic
 
+                //TODO
                 tb_res.Text = results_massiv[0].Substring(0, 7);
                 tb_func_res.Text = results_massiv[1].Substring(0, 7);
             }
@@ -164,34 +162,34 @@
             }
         }
 
-        private List<KeyValuePair<string, string>> GetFunctionList()
+        private List<KeyValuePair<int, string>> GetFunctionList()
         {
-            return new List<KeyValuePair<string, string>>(10)
+            return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<string, string>("1","x * x + 2 * x"),
-                new KeyValuePair<string, string>("2","x * x - 2 * x"),
-                new KeyValuePair<string, string>("3","x + 2 * x"),
-                new KeyValuePair<string, string>("4","x - 2 * x"),
+                new KeyValuePair<int, string>(1,"x * x + 2 * x"),
+                new KeyValuePair<int, string>(2,"x * x - 2 * x"),
+                new KeyValuePair<int, string>(3,"x + 2 * x"),
+                new KeyValuePair<int, string>(4,"x - 2 * x"),
             };
         }
 
-        private List<KeyValuePair<string, string>> GetMethodList()
+        private IEnumerable<KeyValuePair<int, string>> GetMethodList()
         {
-            return new List<KeyValuePair<string, string>>(10)
+            return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<string, string>("1","Метод золотого сечения"),
-                new KeyValuePair<string, string>("2","Фибоначчи"),
-                new KeyValuePair<string, string>("3","Дихотомии"),
+                new KeyValuePair<int, string>(1,"Метод золотого сечения"),
+                new KeyValuePair<int, string>(2,"Фибоначчи"),
+                new KeyValuePair<int, string>(3,"Дихотомии"),
             };
         }
 
-        private List<KeyValuePair<string, string>> GetModeList()
+        private List<KeyValuePair<int, string>> GetModeList()
         {
-            return new List<KeyValuePair<string, string>>(10)
+            return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<string, string>("1","Динамический"),
-                new KeyValuePair<string, string>("2","Пошаговый"),
-                new KeyValuePair<string, string>("3","Статический"),
+                new KeyValuePair<int, string>(1,"Динамический"),
+                new KeyValuePair<int, string>(2,"Пошаговый"),
+                new KeyValuePair<int, string>(3,"Статический"),
             };
         }
 

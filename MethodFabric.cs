@@ -8,13 +8,13 @@
 
     public static class MethodFabric
     {
-        public static BaseMethod GetMethodType(string str)
+        public static BaseMethod GetMethodType(int num)
         {
-            switch (str)
+            switch (num)
             {
-                case "1": return new Gold();
-                case "2": return new Fibonachi();
-                case "3": return new Dichotomy();
+                case 1: return new Gold();
+                case 2: return new Fibonachi();
+                case 3: return new Dichotomy();
                 default: throw new Exception();
             }
         }		

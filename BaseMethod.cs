@@ -102,8 +102,8 @@
         private float[,] DeleteEmptyElements(float[,] temp)
         {
             var emptynum = 0;
-            var n = temp.GetLength(0) - 4;
-            while (n != temp.GetLength(0) - 1)
+            var n = temp.GetLength(0) - 9;
+            while (n != temp.GetLength(0))
             {
                 if (temp[n, 0] == 0 && temp[n, 1] == 0)
                 {
@@ -114,6 +114,20 @@
             var resultarray = new float[temp.GetLength(0) - emptynum, 3];
             Array.Copy(temp, 0, resultarray, 0, temp.Length - emptynum * 3 - 1);
             return resultarray;
+        }
+
+        public List<float[,]> TreatLastElement(List<float[,]> steplist)
+        {
+            float accuracy = 0.001F;
+            var el = steplist.Last();
+            var elres = new float[2, 3];
+            elres[0, 0] = el[0, 0] - accuracy;
+            elres[0, 1] = el[0, 1];
+            elres[1, 0] = el[0, 0] + accuracy;
+            elres[1, 1] = el[0, 1];
+            steplist.Remove(el);
+            steplist.Add(elres);
+            return steplist;
         }
     }
 

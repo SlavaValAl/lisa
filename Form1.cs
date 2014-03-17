@@ -7,6 +7,7 @@
     using System.Drawing;
     using System.Linq;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using ILNumerics;
@@ -23,6 +24,12 @@
         public static List<Point> searcheablePointList;
         List<float[,]> StepPointList;
         static Minimax result;
+        Thread tr;
+        delegate int Del();
+        delegate void newDel();
+        bool pauseDrawingFlag = false;
+        bool stopDrawingFlag = false;
+        bool drawingProcessFlag = false;
 
         public Form1()
         {
@@ -44,6 +51,9 @@
             cbMethodType.DisplayMember = "Value";
             cbMethodType.SelectedIndex = 0;
             rb_min.Checked = true;
+
+            tr = new Thread(StartDrawing);
+            tr.Priority = ThreadPriority.BelowNormal;
         }
 
         private void TurnOffControlButton()
@@ -126,7 +136,8 @@
                 stepList = calcmt.GetSteps(mt);
                 FillStepPointRangeList();
                 index = 0;
-                DrawGraph();
+                //StepPointList = calcmt.TreatLastElement(StepPointList);
+                DrawGraph(index);
                 TurnOnControlButton();
                 //some magic
 
@@ -193,7 +204,7 @@
             };
         }
 
-        private void DrawGraph()
+        private void DrawGraph(int localindex)
         {
             var ilStartPoints = new ILPoints()
             {
@@ -204,17 +215,17 @@
 
             var ilstepPoint = new ILPoints()
             {
-                Positions = StepPointList.ElementAt(index),
+                Positions = StepPointList.ElementAt(localindex),
                 Size = 1,
                 Color = Color.PowderBlue
             };
 
-            index = (index == StepPointList.Count - 1) ? index - 1 : index;
+            localindex = (localindex == StepPointList.Count - 1) ? localindex - 1 : localindex;
 
             float[,] start = new float[2, 3];
             float[,] end = new float[2, 3];
-            Array.Copy(StepPointList.ElementAt(index), start, 3);
-            Array.Copy(StepPointList.ElementAt(index), StepPointList.ElementAt(index).Length - 7, end, 2, 3);
+            Array.Copy(StepPointList.ElementAt(localindex), start, 3);
+            Array.Copy(StepPointList.ElementAt(localindex), StepPointList.ElementAt(localindex).Length - 7, end, 2, 3);
             start[1, 0] = start[0, 0];
             start[0, 1] = result.min;
             start[1, 1] = result.max;
@@ -239,7 +250,7 @@
         }
     };
             this.ilPanel1.Scene = SetScaleModes(scene);
-            this.ilPanel1.Refresh();
+            this.ilPanel1.Invoke(new newDel(() => ilPanel1.Refresh()));
         }
 
         private static ILScene SetScaleModes(ILScene scene)
@@ -256,7 +267,7 @@
             this.bt_previousStep.Enabled = false;
             this.bt_nextStep.Enabled = true;
             index = 0;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_previousStep_Click(object sender, EventArgs e)
@@ -264,7 +275,7 @@
             index--;
             this.bt_nextStep.Enabled = true;
             this.bt_previousStep.Enabled = (index == 0) ? false : true;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_nextStep_Click(object sender, EventArgs e)
@@ -272,7 +283,7 @@
             index++;
             this.bt_previousStep.Enabled = true;
             this.bt_nextStep.Enabled = (index == StepPointList.Count - 1) ? false : true;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_lastStep_Click(object sender, EventArgs e)
@@ -280,33 +291,71 @@
             index = StepPointList.Count - 1;
             this.bt_nextStep.Enabled = false;
             this.bt_previousStep.Enabled = true;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_stop_Click(object sender, EventArgs e)
         {
+            pauseDrawingFlag = true;
+            new Thread(stopDrawingFunction).Start();
+        }
 
+        private void stopDrawingFunction()
+        {
+            int retries = 0;
+            while (drawingProcessFlag)
+            {
+                if (retries > 5)
+                {
+                    throw new Exception("Количество попыток ожидания потока исчерпано");
+                }
+                retries++;
+                Thread.Sleep(500);
+            }
+            resetGraph();
+        }
+
+        private void resetGraph()
+        {
+            index = 0;
+            DrawGraph(index);
         }
 
         private void bt_start_Click(object sender, EventArgs e)
         {
-
+            pauseDrawingFlag = false;
+            stopDrawingFlag = false;
+            drawingProcessFlag = true;
+            tr = new Thread(StartDrawing);
+            tr.Start();
         }
 
         private void bt_pause_Click(object sender, EventArgs e)
         {
+            pauseDrawingFlag = true;
+        }
 
+        private void StartDrawing()
+        {
+            var delay = (int)this.t_speed.Invoke(new Del(() => t_speed.Value)) * 1000;
+            while (index < StepPointList.Count)
+            {
+                if (pauseDrawingFlag)
+                {
+                    drawingProcessFlag = false;
+                    return;
+                }
+                DrawGraph(index);
+                index++;
+                Thread.Sleep(delay);
+            }
+            drawingProcessFlag = false;
         }
 
         struct Minimax
         {
             public float min;
             public float max;
-        }
-
-        private void bt_refresh_Click(object sender, EventArgs e)
-        {
-            DrawGraph();
         }
     }
 }

@@ -28,7 +28,6 @@
         delegate int Del();
         delegate void newDel();
         bool pauseDrawingFlag = false;
-        bool stopDrawingFlag = false;
         bool drawingProcessFlag = false;
 
         public Form1()

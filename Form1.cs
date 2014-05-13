@@ -27,9 +27,14 @@
         Thread tr;
         delegate int Del();
         delegate void newDel();
+<<<<<<< HEAD
         bool pauseDrawingFlag = false;
         bool stopDrawingFlag = false;
         bool drawingProcessFlag = false;
+=======
+        ManualResetEvent _shutdownEvent = new ManualResetEvent(false);
+        ManualResetEvent _pauseEvent = new ManualResetEvent(true);
+>>>>>>> 739010605561a79350d5c68691a388264de8d116
 
         public Form1()
         {
@@ -296,6 +301,7 @@
 
         private void bt_stop_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             pauseDrawingFlag = true;
             new Thread(stopDrawingFunction).Start();
         }
@@ -313,10 +319,21 @@
                 Thread.Sleep(500);
             }
             resetGraph();
+=======
+            // Signal the shutdown event
+            _shutdownEvent.Set();
+
+            // Make sure to resume any paused threads
+            _pauseEvent.Set();
+
+            // Wait for the thread to exit
+            tr.Join();
+>>>>>>> 739010605561a79350d5c68691a388264de8d116
         }
 
         private void resetGraph()
         {
+<<<<<<< HEAD
             index = 0;
             DrawGraph(index);
         }
@@ -326,12 +343,15 @@
             pauseDrawingFlag = false;
             stopDrawingFlag = false;
             drawingProcessFlag = true;
+=======
+>>>>>>> 739010605561a79350d5c68691a388264de8d116
             tr = new Thread(StartDrawing);
             tr.Start();
         }
 
         private void bt_pause_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             pauseDrawingFlag = true;
         }
 
@@ -350,6 +370,27 @@
                 Thread.Sleep(delay);
             }
             drawingProcessFlag = false;
+=======
+            _pauseEvent.Reset();
+        }
+
+        private void StartDrawing()
+        {
+            while (true)
+            {
+                _pauseEvent.WaitOne(Timeout.Infinite);
+
+                if (_shutdownEvent.WaitOne(0))
+                    break;
+
+                var delay = (int)this.t_speed.Invoke(new Del(() => t_speed.Value)) * 1000;
+                for (index = 0; index < StepPointList.Count; index++)
+                {
+                    DrawGraph(index);
+                    Thread.Sleep(delay);
+                }
+            }
+>>>>>>> 739010605561a79350d5c68691a388264de8d116
         }
 
         struct Minimax
@@ -357,5 +398,9 @@
             public float min;
             public float max;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 739010605561a79350d5c68691a388264de8d116
     }
 }

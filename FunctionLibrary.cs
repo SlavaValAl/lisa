@@ -11,14 +11,14 @@
     public static class FunctionLibrary
     {
         public static float MyPI = (float)Math.PI;
-        public static MyDel GetFunction(string id)
+        public static MyDel GetFunction(int id)
         {
             switch (id)
             {
-                case "1": return Function1;
-                case "2": return Function2;
-                case "3": return Function3;
-                case "4": return Function4;
+                case 1: return Function1;
+                case 2: return Function2;
+                case 3: return Function3;
+                case 4: return Function4;
                 default: throw new InvalidOperationException();
             }
         }

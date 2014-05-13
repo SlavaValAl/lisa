@@ -47,13 +47,11 @@
             this.tb_res = new System.Windows.Forms.TextBox();
             this.tb_func_res = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bt_refresh = new System.Windows.Forms.Button();
             this.ilPanel1 = new ILNumerics.Drawing.ILPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.cb_mode = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.t_speed = new System.Windows.Forms.TrackBar();
             this.p_results = new System.Windows.Forms.Panel();
             this.p_step = new System.Windows.Forms.Panel();
             this.bt_firstStep = new System.Windows.Forms.Button();
@@ -74,11 +72,10 @@
             this.bt_pause = new System.Windows.Forms.Button();
             this.bt_start = new System.Windows.Forms.Button();
             this.bt_stop = new System.Windows.Forms.Button();
-            this.t_sreed = new System.Windows.Forms.TrackBar();
             this.tb_stepnumber = new System.Windows.Forms.TextBox();
+            this.t_speed = new System.Windows.Forms.TrackBar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.t_speed)).BeginInit();
             this.p_results.SuspendLayout();
             this.p_step.SuspendLayout();
             this.p_static.SuspendLayout();
@@ -86,7 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.p_dynamic.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.t_sreed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.t_speed)).BeginInit();
             this.SuspendLayout();
             // 
             // cbFunctionType
@@ -250,25 +247,11 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.bt_refresh);
             this.panel1.Controls.Add(this.ilPanel1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(597, 444);
             this.panel1.TabIndex = 17;
-            // 
-            // bt_refresh
-            // 
-            this.bt_refresh.BackColor = System.Drawing.SystemColors.Control;
-            this.bt_refresh.FlatAppearance.BorderSize = 0;
-            this.bt_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_refresh.Image = global::diplom.Properties.Resources.refresh;
-            this.bt_refresh.Location = new System.Drawing.Point(545, 388);
-            this.bt_refresh.Name = "bt_refresh";
-            this.bt_refresh.Size = new System.Drawing.Size(36, 36);
-            this.bt_refresh.TabIndex = 26;
-            this.bt_refresh.UseVisualStyleBackColor = false;
-            this.bt_refresh.Click += new System.EventHandler(this.bt_refresh_Click);
             // 
             // ilPanel1
             // 
@@ -338,13 +321,6 @@
             this.label10.Size = new System.Drawing.Size(47, 15);
             this.label10.TabIndex = 30;
             this.label10.Text = "Режим";
-            // 
-            // t_speed
-            // 
-            this.t_speed.Location = new System.Drawing.Point(0, 0);
-            this.t_speed.Name = "t_speed";
-            this.t_speed.Size = new System.Drawing.Size(104, 45);
-            this.t_speed.TabIndex = 0;
             // 
             // p_results
             // 
@@ -480,7 +456,7 @@
             // 
             this.trackBar2.Location = new System.Drawing.Point(3, 3);
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(279, 45);
+            this.trackBar2.Size = new System.Drawing.Size(279, 42);
             this.trackBar2.TabIndex = 0;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -488,7 +464,7 @@
             // 
             this.trackBar1.Location = new System.Drawing.Point(0, 1);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(290, 45);
+            this.trackBar1.Size = new System.Drawing.Size(290, 42);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -531,8 +507,8 @@
             this.p_dynamic.Controls.Add(this.bt_pause);
             this.p_dynamic.Controls.Add(this.bt_start);
             this.p_dynamic.Controls.Add(this.bt_stop);
-            this.p_dynamic.Controls.Add(this.t_sreed);
-            this.p_dynamic.Location = new System.Drawing.Point(621, 336);
+            this.p_dynamic.Controls.Add(this.t_speed);
+            this.p_dynamic.Location = new System.Drawing.Point(621, 213);
             this.p_dynamic.Name = "p_dynamic";
             this.p_dynamic.Size = new System.Drawing.Size(290, 100);
             this.p_dynamic.TabIndex = 25;
@@ -574,13 +550,14 @@
             this.bt_stop.UseVisualStyleBackColor = true;
             this.bt_stop.Click += new System.EventHandler(this.bt_stop_Click);
             // 
-            // t_sreed
+            // t_speed
             // 
-            this.t_sreed.Location = new System.Drawing.Point(0, 3);
-            this.t_sreed.Name = "t_sreed";
-            this.t_sreed.Size = new System.Drawing.Size(287, 45);
-            this.t_sreed.TabIndex = 0;
-            this.t_sreed.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.t_speed.LargeChange = 1;
+            this.t_speed.Location = new System.Drawing.Point(0, 3);
+            this.t_speed.Name = "t_speed";
+            this.t_speed.Size = new System.Drawing.Size(287, 42);
+            this.t_speed.TabIndex = 0;
+            this.t_speed.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // tb_stepnumber
             // 
@@ -595,7 +572,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1184, 467);
+            this.ClientSize = new System.Drawing.Size(1194, 480);
             this.Controls.Add(this.p_dynamic);
             this.Controls.Add(this.p_step);
             this.Controls.Add(this.p_static);
@@ -612,7 +589,6 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.t_speed)).EndInit();
             this.p_results.ResumeLayout(false);
             this.p_results.PerformLayout();
             this.p_step.ResumeLayout(false);
@@ -623,7 +599,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.p_dynamic.ResumeLayout(false);
             this.p_dynamic.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.t_sreed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.t_speed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -655,7 +631,6 @@
         private ILNumerics.Drawing.ILPanel ilPanel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TrackBar t_speed;
         private System.Windows.Forms.Panel p_results;
         private System.Windows.Forms.Panel p_step;
         private System.Windows.Forms.ComboBox cb_mode;
@@ -670,14 +645,13 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Panel p_dynamic;
-        private System.Windows.Forms.TrackBar t_sreed;
         private System.Windows.Forms.Button bt_stop;
         private System.Windows.Forms.Button bt_pause;
         private System.Windows.Forms.Button bt_start;
         private System.Windows.Forms.Button bt_refresh;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tb_stepnumber;
-
+        private System.Windows.Forms.TrackBar t_speed;
 
     }
 }

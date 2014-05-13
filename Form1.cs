@@ -7,6 +7,7 @@
     using System.Drawing;
     using System.Linq;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using ILNumerics;
@@ -23,6 +24,11 @@
         public static List<Point> searcheablePointList;
         List<float[,]> StepPointList;
         static Minimax result;
+        Thread tr;
+        delegate int Del();
+        delegate void newDel();
+        bool pauseDrawingFlag = false;
+        bool drawingProcessFlag = false;
 
         public Form1()
         {
@@ -30,20 +36,23 @@
             cbFunctionType.DataSource = GetFunctionList();
             cbFunctionType.ValueMember = "Key";
             cbFunctionType.DisplayMember = "Value";
-            cbFunctionType.SelectedValue = "1";
+            cbFunctionType.SelectedIndex = 0;
 
             TurnOffControlButton();
 
             cb_mode.DataSource = GetModeList();
             cb_mode.ValueMember = "Key";
             cb_mode.DisplayMember = "Value";
-            cb_mode.SelectedValue = "1";
+            cb_mode.SelectedIndex = 0;
 
             cbMethodType.DataSource = GetMethodList();
             cbMethodType.ValueMember = "Key";
             cbMethodType.DisplayMember = "Value";
-            cbMethodType.SelectedValue = "1";
+            cbMethodType.SelectedIndex = 0;
             rb_min.Checked = true;
+
+            tr = new Thread(StartDrawing);
+            tr.Priority = ThreadPriority.BelowNormal;
         }
 
         private void TurnOffControlButton()
@@ -68,29 +77,31 @@
             double temp_end;
             double temp_cur;
 
-            switch ((string)cb_mode.SelectedValue)
+            switch (((KeyValuePair<int, string>)cb_mode.SelectedItem).Key)
             {
-                case "1":
+                case 1:
                     {
                         p_dynamic.Visible = true;
                         p_step.Visible = false;
                         p_static.Visible = false;
                         break;
                     }
-                case "2":
+                case 2:
                     {
                         p_dynamic.Visible = false;
                         p_step.Visible = true;
                         p_static.Visible = false;
                         break;
                     }
-                case "3":
+                case 3:
                     {
                         p_dynamic.Visible = false;
                         p_step.Visible = false;
                         p_static.Visible = true;
                         break;
                     }
+                default:
+                    break;
             }
 
             try
@@ -107,17 +118,12 @@
                 }
 
                 var mt = rb_max.Checked ? MethodType.Maximum : MethodType.Minimum;
-                var funcNum = (string)cbFunctionType.SelectedValue;
-                var method_num = (string)cbMethodType.SelectedValue;
-                if (string.IsNullOrEmpty(funcNum) || string.IsNullOrEmpty(method_num))
-                {
-                    MessageBox.Show("Некорректные значения списков");
-                    return;
-                }
-                var tempDelegate = FunctionLibrary.GetFunction(funcNum);
+                var funcNum = ((KeyValuePair<int, string>)cbFunctionType.SelectedItem).Key;
+                var method_num = ((KeyValuePair<int, string>)cbMethodType.SelectedItem).Key;
+
                 var calcmt = MethodFabric.GetMethodType(method_num);
 
-                calcmt.SetValues(temp_start, temp_end, temp_cur, tempDelegate);
+                calcmt.SetValues(temp_start, temp_end, temp_cur, FunctionLibrary.GetFunction(funcNum));
                 calcmt.Calculate();
                 results_massiv = calcmt.GetResults(mt);
 
@@ -129,10 +135,12 @@
                 stepList = calcmt.GetSteps(mt);
                 FillStepPointRangeList();
                 index = 0;
-                DrawGraph();
+                //StepPointList = calcmt.TreatLastElement(StepPointList);
+                DrawGraph(index);
                 TurnOnControlButton();
                 //some magic
 
+                //TODO
                 tb_res.Text = results_massiv[0].Substring(0, 7);
                 tb_func_res.Text = results_massiv[1].Substring(0, 7);
                 tb_stepnumber.Text = stepList.Count().ToString();
@@ -165,38 +173,38 @@
             }
         }
 
-        private List<KeyValuePair<string, string>> GetFunctionList()
+        private List<KeyValuePair<int, string>> GetFunctionList()
         {
-            return new List<KeyValuePair<string, string>>(10)
+            return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<string, string>("1","x * x + 2 * x"),
-                new KeyValuePair<string, string>("2","x * x - 2 * x"),
-                new KeyValuePair<string, string>("3","x + 2 * x"),
-                new KeyValuePair<string, string>("4","x - 2 * x"),
+                new KeyValuePair<int, string>(1,"x * x + 2 * x"),
+                new KeyValuePair<int, string>(2,"x * x - 2 * x"),
+                new KeyValuePair<int, string>(3,"x + 2 * x"),
+                new KeyValuePair<int, string>(4,"x - 2 * x"),
             };
         }
 
-        private List<KeyValuePair<string, string>> GetMethodList()
+        private IEnumerable<KeyValuePair<int, string>> GetMethodList()
         {
-            return new List<KeyValuePair<string, string>>(10)
+            return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<string, string>("1","Метод золотого сечения"),
-                new KeyValuePair<string, string>("2","Фибоначчи"),
-                new KeyValuePair<string, string>("3","Дихотомии"),
+                new KeyValuePair<int, string>(1,"Метод золотого сечения"),
+                new KeyValuePair<int, string>(2,"Фибоначчи"),
+                new KeyValuePair<int, string>(3,"Дихотомии"),
             };
         }
 
-        private List<KeyValuePair<string, string>> GetModeList()
+        private IEnumerable<KeyValuePair<int, string>> GetModeList()
         {
-            return new List<KeyValuePair<string, string>>(10)
+            return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<string, string>("1","Автоматический"),
-                new KeyValuePair<string, string>("2","Пошаговый"),
-                new KeyValuePair<string, string>("3","Статический"),
+                new KeyValuePair<int, string>(1,"Автоматический"),
+                new KeyValuePair<int, string>(2,"Пошаговый"),
+                new KeyValuePair<int, string>(3,"Статический")
             };
         }
 
-        private void DrawGraph()
+        private void DrawGraph(int localindex)
         {
             var ilStartPoints = new ILPoints()
             {
@@ -207,17 +215,17 @@
 
             var ilstepPoint = new ILPoints()
             {
-                Positions = StepPointList.ElementAt(index),
+                Positions = StepPointList.ElementAt(localindex),
                 Size = 1,
                 Color = Color.PowderBlue
             };
 
-            index = (index == StepPointList.Count - 1) ? index - 1 : index;
+            localindex = (localindex == StepPointList.Count - 1) ? localindex - 1 : localindex;
 
             float[,] start = new float[2, 3];
             float[,] end = new float[2, 3];
-            Array.Copy(StepPointList.ElementAt(index), start, 3);
-            Array.Copy(StepPointList.ElementAt(index), StepPointList.ElementAt(index).Length - 7, end, 2, 3);
+            Array.Copy(StepPointList.ElementAt(localindex), start, 3);
+            Array.Copy(StepPointList.ElementAt(localindex), StepPointList.ElementAt(localindex).Length - 7, end, 2, 3);
             start[1, 0] = start[0, 0];
             start[0, 1] = result.min;
             start[1, 1] = result.max;
@@ -241,14 +249,17 @@
             ilStartPoints, ilstepPoint, exLine
         }
     };
+            this.ilPanel1.Scene = SetScaleModes(scene);
+            this.ilPanel1.Invoke(new newDel(() => ilPanel1.Refresh()));
+        }
+
+        private static ILScene SetScaleModes(ILScene scene)
+        {
             var pcsm = scene.First<ILPlotCube>().ScaleModes;
             pcsm.XAxisScale = AxisScale.Linear;
             pcsm.YAxisScale = AxisScale.Linear;
             pcsm.ZAxisScale = AxisScale.Linear;
-
-            this.ilPanel1.Scene = scene;
-            this.ilPanel1.Refresh();
-
+            return scene;
         }
 
         private void bt_firstStep_Click(object sender, EventArgs e)
@@ -256,7 +267,7 @@
             this.bt_previousStep.Enabled = false;
             this.bt_nextStep.Enabled = true;
             index = 0;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_previousStep_Click(object sender, EventArgs e)
@@ -264,7 +275,7 @@
             index--;
             this.bt_nextStep.Enabled = true;
             this.bt_previousStep.Enabled = (index == 0) ? false : true;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_nextStep_Click(object sender, EventArgs e)
@@ -272,7 +283,7 @@
             index++;
             this.bt_previousStep.Enabled = true;
             this.bt_nextStep.Enabled = (index == StepPointList.Count - 1) ? false : true;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_lastStep_Click(object sender, EventArgs e)
@@ -280,22 +291,64 @@
             index = StepPointList.Count - 1;
             this.bt_nextStep.Enabled = false;
             this.bt_previousStep.Enabled = true;
-            this.DrawGraph();
+            this.DrawGraph(index);
         }
 
         private void bt_stop_Click(object sender, EventArgs e)
         {
+            pauseDrawingFlag = true;
+            new Thread(stopDrawingFunction).Start();
+        }
 
+        private void stopDrawingFunction()
+        {
+            int retries = 0;
+            while (drawingProcessFlag)
+            {
+                if (retries > 5)
+                {
+                    throw new Exception("Количество попыток ожидания потока исчерпано");
+                }
+                retries++;
+                Thread.Sleep(500);
+            }
+            resetGraph();
+        }
+
+        private void resetGraph()
+        {
+            index = 0;
+            DrawGraph(index);
         }
 
         private void bt_start_Click(object sender, EventArgs e)
         {
-
+            pauseDrawingFlag = false;
+            drawingProcessFlag = true;
+            tr = new Thread(StartDrawing);
+            tr.Start();
         }
 
         private void bt_pause_Click(object sender, EventArgs e)
         {
+            pauseDrawingFlag = true;
+        }
 
+        private void StartDrawing()
+        {
+            var delay = (int)this.t_speed.Invoke(new Del(() => t_speed.Value)) * 1000;
+            while (index < StepPointList.Count)
+            {
+                if (pauseDrawingFlag)
+                {
+                    drawingProcessFlag = false;
+                    return;
+                }
+                DrawGraph(index);
+                index++;
+                Thread.Sleep(delay);
+            }
+            drawingProcessFlag = false;
         }
 
         struct Minimax
@@ -303,11 +356,5 @@
             public float min;
             public float max;
         }
-
-        private void bt_refresh_Click(object sender, EventArgs e)
-        {
-            this.ilPanel1.Refresh();
-        }
-
     }
 }

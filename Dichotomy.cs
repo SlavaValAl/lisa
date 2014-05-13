@@ -15,27 +15,32 @@
             float b = (float)this.B;
             float e = (float)this.E;
             float x1 = 0;
+            float x2 = 0;
             float y1 = 0;
             float y2 = 0;
+            float sigma = 0;
             if (mType.HasFlag(MethodType.Minimum))
             {
                 this.minStepsArray = new List<Segment>();
             }
 
-            while (Math.Abs(b - a) > e)
+            while (b - a > e)
             {
-                x1 = (b + a) / 2;
-                y1 = this.Y(x1 - e);
-                y2 = this.Y(x1 + e);
+                sigma = (b - a) / 4;
+                x1 = ((b + a) / 2) - sigma;
+                x2 = ((b + a) / 2) + sigma;
+                y1 = this.Y(x1);
+                y2 = this.Y(x2);
 
                 if (Compare(mType, y1, y2))
                 {
-                    b = x1;
+                    a = x1;
                 }
                 else
                 {
-                    a = x1;
+                    b = x2;
                 }
+
                 this.AddStep(a, b, mType);
 
                 answer = (a + b) / 2;
@@ -56,8 +61,8 @@
         {
             switch (mType)
             {
-                case MethodType.Minimum: return y1 < y2;
-                case MethodType.Maximum: return y1 > y2;
+                case MethodType.Minimum: return y1 > y2;
+                case MethodType.Maximum: return y1 < y2;
                 default: throw new Exception("Передан неверный тип значения");
             }
         }

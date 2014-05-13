@@ -50,6 +50,7 @@
             this.bt_refresh = new System.Windows.Forms.Button();
             this.ilPanel1 = new ILNumerics.Drawing.ILPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.cb_mode = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.t_speed = new System.Windows.Forms.TrackBar();
@@ -74,6 +75,7 @@
             this.bt_start = new System.Windows.Forms.Button();
             this.bt_stop = new System.Windows.Forms.Button();
             this.t_sreed = new System.Windows.Forms.TrackBar();
+            this.tb_stepnumber = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.t_speed)).BeginInit();
@@ -198,7 +200,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 26);
+            this.label6.Location = new System.Drawing.Point(21, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 15);
             this.label6.TabIndex = 12;
@@ -207,7 +209,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 56);
+            this.label7.Location = new System.Drawing.Point(21, 41);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(116, 15);
             this.label7.TabIndex = 13;
@@ -231,7 +233,7 @@
             // 
             this.tb_res.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tb_res.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(5)))), ((int)(((byte)(95)))));
-            this.tb_res.Location = new System.Drawing.Point(139, 20);
+            this.tb_res.Location = new System.Drawing.Point(139, 8);
             this.tb_res.Name = "tb_res";
             this.tb_res.ReadOnly = true;
             this.tb_res.Size = new System.Drawing.Size(100, 21);
@@ -240,7 +242,7 @@
             // tb_func_res
             // 
             this.tb_func_res.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(5)))), ((int)(((byte)(95)))));
-            this.tb_func_res.Location = new System.Drawing.Point(139, 53);
+            this.tb_func_res.Location = new System.Drawing.Point(139, 38);
             this.tb_func_res.Name = "tb_func_res";
             this.tb_func_res.ReadOnly = true;
             this.tb_func_res.Size = new System.Drawing.Size(100, 21);
@@ -307,6 +309,15 @@
             this.panel2.Size = new System.Drawing.Size(550, 195);
             this.panel2.TabIndex = 22;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(21, 68);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 15);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "Кол-во итераций";
+            // 
             // cb_mode
             // 
             this.cb_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -338,6 +349,8 @@
             // p_results
             // 
             this.p_results.BackColor = System.Drawing.Color.White;
+            this.p_results.Controls.Add(this.tb_stepnumber);
+            this.p_results.Controls.Add(this.label8);
             this.p_results.Controls.Add(this.tb_res);
             this.p_results.Controls.Add(this.label6);
             this.p_results.Controls.Add(this.label7);
@@ -414,7 +427,7 @@
             // 
             this.p_static.BackColor = System.Drawing.Color.White;
             this.p_static.Controls.Add(this.panel6);
-            this.p_static.Location = new System.Drawing.Point(920, 336);
+            this.p_static.Location = new System.Drawing.Point(621, 213);
             this.p_static.Name = "p_static";
             this.p_static.Size = new System.Drawing.Size(290, 100);
             this.p_static.TabIndex = 10;
@@ -569,6 +582,14 @@
             this.t_sreed.TabIndex = 0;
             this.t_sreed.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
+            // tb_stepnumber
+            // 
+            this.tb_stepnumber.Location = new System.Drawing.Point(139, 68);
+            this.tb_stepnumber.Name = "tb_stepnumber";
+            this.tb_stepnumber.ReadOnly = true;
+            this.tb_stepnumber.Size = new System.Drawing.Size(100, 21);
+            this.tb_stepnumber.TabIndex = 32;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -654,6 +675,8 @@
         private System.Windows.Forms.Button bt_pause;
         private System.Windows.Forms.Button bt_start;
         private System.Windows.Forms.Button bt_refresh;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tb_stepnumber;
 
 
     }

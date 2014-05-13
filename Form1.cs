@@ -135,6 +135,7 @@
 
                 tb_res.Text = results_massiv[0].Substring(0, 7);
                 tb_func_res.Text = results_massiv[1].Substring(0, 7);
+                tb_stepnumber.Text = stepList.Count().ToString();
             }
             catch (Exception ex)
             {

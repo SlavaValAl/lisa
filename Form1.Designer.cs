@@ -49,10 +49,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.ilPanel1 = new ILNumerics.Drawing.ILPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
             this.cb_mode = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.p_results = new System.Windows.Forms.Panel();
+            this.tb_stepnumber = new System.Windows.Forms.TextBox();
             this.p_step = new System.Windows.Forms.Panel();
             this.bt_firstStep = new System.Windows.Forms.Button();
             this.bt_previousStep = new System.Windows.Forms.Button();
@@ -72,7 +73,6 @@
             this.bt_pause = new System.Windows.Forms.Button();
             this.bt_start = new System.Windows.Forms.Button();
             this.bt_stop = new System.Windows.Forms.Button();
-            this.tb_stepnumber = new System.Windows.Forms.TextBox();
             this.t_speed = new System.Windows.Forms.TrackBar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -292,15 +292,6 @@
             this.panel2.Size = new System.Drawing.Size(550, 195);
             this.panel2.TabIndex = 22;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 68);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(106, 15);
-            this.label8.TabIndex = 31;
-            this.label8.Text = "Кол-во итераций";
-            // 
             // cb_mode
             // 
             this.cb_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -322,6 +313,15 @@
             this.label10.TabIndex = 30;
             this.label10.Text = "Режим";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(21, 68);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 15);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "Кол-во итераций";
+            // 
             // p_results
             // 
             this.p_results.BackColor = System.Drawing.Color.White;
@@ -337,6 +337,14 @@
             this.p_results.Name = "p_results";
             this.p_results.Size = new System.Drawing.Size(250, 100);
             this.p_results.TabIndex = 24;
+            // 
+            // tb_stepnumber
+            // 
+            this.tb_stepnumber.Location = new System.Drawing.Point(139, 68);
+            this.tb_stepnumber.Name = "tb_stepnumber";
+            this.tb_stepnumber.ReadOnly = true;
+            this.tb_stepnumber.Size = new System.Drawing.Size(100, 21);
+            this.tb_stepnumber.TabIndex = 32;
             // 
             // p_step
             // 
@@ -554,18 +562,13 @@
             // 
             this.t_speed.LargeChange = 1;
             this.t_speed.Location = new System.Drawing.Point(0, 3);
+            this.t_speed.Maximum = 5;
+            this.t_speed.Minimum = 1;
             this.t_speed.Name = "t_speed";
             this.t_speed.Size = new System.Drawing.Size(287, 42);
             this.t_speed.TabIndex = 0;
             this.t_speed.TickStyle = System.Windows.Forms.TickStyle.None;
-            // 
-            // tb_stepnumber
-            // 
-            this.tb_stepnumber.Location = new System.Drawing.Point(139, 68);
-            this.tb_stepnumber.Name = "tb_stepnumber";
-            this.tb_stepnumber.ReadOnly = true;
-            this.tb_stepnumber.Size = new System.Drawing.Size(100, 21);
-            this.tb_stepnumber.TabIndex = 32;
+            this.t_speed.Value = 1;
             // 
             // Form1
             // 

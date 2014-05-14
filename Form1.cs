@@ -77,33 +77,6 @@
             double temp_end;
             double temp_cur;
 
-            switch (((KeyValuePair<int, string>)cb_mode.SelectedItem).Key)
-            {
-                case 1:
-                    {
-                        p_dynamic.Visible = true;
-                        p_step.Visible = false;
-                        p_static.Visible = false;
-                        break;
-                    }
-                case 2:
-                    {
-                        p_dynamic.Visible = false;
-                        p_step.Visible = true;
-                        p_static.Visible = false;
-                        break;
-                    }
-                case 3:
-                    {
-                        p_dynamic.Visible = false;
-                        p_step.Visible = false;
-                        p_static.Visible = true;
-                        break;
-                    }
-                default:
-                    break;
-            }
-
             try
             {
                 try
@@ -139,6 +112,34 @@
                 DrawGraph(index);
                 TurnOnControlButton();
                 //some magic
+
+                switch (((KeyValuePair<int, string>)cb_mode.SelectedItem).Key)
+                {
+                    case 1:
+                        {
+                            p_dynamic.Visible = true;
+                            p_step.Visible = false;
+                            p_static.Visible = false;
+                            break;
+                        }
+                    case 2:
+                        {
+                            p_dynamic.Visible = false;
+                            p_step.Visible = true;
+                            p_static.Visible = false;
+                            break;
+                        }
+                    case 3:
+                        {
+                            p_dynamic.Visible = false;
+                            p_step.Visible = false;
+                            p_static.Visible = true;
+                            DrawGraph(StepPointList.Count - 1);
+                            break;
+                        }
+                    default:
+                        break;
+                }
 
                 //TODO
                 tb_res.Text = results_massiv[0].Substring(0, 7);
@@ -336,7 +337,9 @@
 
         private void StartDrawing()
         {
-            var delay = (int)this.t_speed.Invoke(new Del(() => t_speed.Value)) * 1000;
+            var trackbarValue = (int)this.t_speed.Invoke(new Del(() => t_speed.Value));
+            var speed_value = (float)(1.0 / trackbarValue);
+            var delay = (int)(((float)(1.0 / (int)this.t_speed.Invoke(new Del(() => t_speed.Value)))) * 2000);
             while (index < StepPointList.Count)
             {
                 if (pauseDrawingFlag)

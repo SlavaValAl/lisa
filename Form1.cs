@@ -337,8 +337,6 @@
 
         private void StartDrawing()
         {
-            var trackbarValue = (int)this.t_speed.Invoke(new Del(() => t_speed.Value));
-            var speed_value = (float)(1.0 / trackbarValue);
             var delay = (int)(((float)(1.0 / (int)this.t_speed.Invoke(new Del(() => t_speed.Value)))) * 2000);
             while (index < StepPointList.Count)
             {

@@ -337,9 +337,9 @@
 
         private void StartDrawing()
         {
-            var delay = (int)(((float)(1.0 / (int)this.t_speed.Invoke(new Del(() => t_speed.Value)))) * 2000);
             while (index < StepPointList.Count)
             {
+                var delay = (int)(((float)(1.0 / (int)this.t_speed.Invoke(new Del(() => t_speed.Value)))) * 2000);
                 if (pauseDrawingFlag)
                 {
                     drawingProcessFlag = false;

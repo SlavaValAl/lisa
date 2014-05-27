@@ -18,6 +18,7 @@
         protected List<Segment> minStepsArray = new List<Segment>();
         protected List<Segment> maxStepsArray = new List<Segment>();
         public InfoBlock infoBlock = new InfoBlock();
+        public List<AdditionInfo> addInfoList = new List<AdditionInfo>(20);
 
         public float GetYbyX(float x)
         {
@@ -174,6 +175,19 @@
             this.left_border = left_border;
             this.right_border = right_border;
             this.delta = delta;
+        }
+    }
+    public struct AdditionInfo
+    {
+        public static int Fn;
+        public static int N;
+        public float delta;
+        public float k;
+        
+        public AdditionInfo(float delta, float k)
+        {
+            this.delta = delta;
+            this.k = k;
         }
     }
 }

@@ -8,6 +8,8 @@
 
     class Dichotomy : BaseMethod
     {
+        public List<float> delta_array = new List<float>(20);
+
         public override void CalculateByType(MethodType mType)
         {
             float answer = 0;
@@ -24,7 +26,9 @@
             {
                 this.minStepsArray = new List<Segment>();
             }
+
             this.AddStep(a, b, mType);
+            addInfoList.Add(new AdditionInfo(e, 0));
             while (b - a > e)
             {
                 delta = (b - a) / 4;
@@ -42,6 +46,7 @@
                     b = x2;
                 }
 
+                addInfoList.Add(new AdditionInfo(delta, 0));
                 this.AddStep(a, b, mType);
 
                 answer = (a + b) / 2;

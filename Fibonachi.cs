@@ -56,13 +56,11 @@
                     x1 = a + IndexValueList[N - j - 2] * (b - a) / IndexValueList[N - j];
                     y1 = this.Y(x1);
                 }
-
                 else
                 {
                     a = x1;
                     x1 = x2;
                     y1 = y2;
-
                     x2 = a + IndexValueList[N - j - 1] * (b - a) / IndexValueList[N - j];
                     y2 = this.Y(x2);
                 }

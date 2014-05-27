@@ -76,6 +76,12 @@
             this.t_speed = new System.Windows.Forms.TrackBar();
             this.rtbInfo = new System.Windows.Forms.RichTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.l_kvalue = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.l_Fn = new System.Windows.Forms.Label();
+            this.l_n = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.lable3 = new System.Windows.Forms.Label();
             this.l_x1 = new System.Windows.Forms.Label();
             this.lable2 = new System.Windows.Forms.Label();
@@ -586,7 +592,7 @@
             this.rtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.rtbInfo.ForeColor = System.Drawing.Color.White;
-            this.rtbInfo.Location = new System.Drawing.Point(0, 3);
+            this.rtbInfo.Location = new System.Drawing.Point(0, 0);
             this.rtbInfo.Name = "rtbInfo";
             this.rtbInfo.ReadOnly = true;
             this.rtbInfo.Size = new System.Drawing.Size(550, 48);
@@ -596,6 +602,12 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.l_kvalue);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.l_Fn);
+            this.panel3.Controls.Add(this.l_n);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.lable3);
             this.panel3.Controls.Add(this.l_x1);
             this.panel3.Controls.Add(this.lable2);
@@ -609,12 +621,78 @@
             this.panel3.TabIndex = 28;
             this.panel3.Visible = false;
             // 
+            // l_kvalue
+            // 
+            this.l_kvalue.AutoSize = true;
+            this.l_kvalue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_kvalue.ForeColor = System.Drawing.Color.White;
+            this.l_kvalue.Location = new System.Drawing.Point(399, 102);
+            this.l_kvalue.Name = "l_kvalue";
+            this.l_kvalue.Size = new System.Drawing.Size(16, 15);
+            this.l_kvalue.TabIndex = 39;
+            this.l_kvalue.Text = "   ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(363, 102);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 15);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "k   =";
+            // 
+            // l_Fn
+            // 
+            this.l_Fn.AutoSize = true;
+            this.l_Fn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_Fn.ForeColor = System.Drawing.Color.White;
+            this.l_Fn.Location = new System.Drawing.Point(412, 78);
+            this.l_Fn.Name = "l_Fn";
+            this.l_Fn.Size = new System.Drawing.Size(16, 15);
+            this.l_Fn.TabIndex = 37;
+            this.l_Fn.Text = "   ";
+            // 
+            // l_n
+            // 
+            this.l_n.AutoSize = true;
+            this.l_n.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_n.ForeColor = System.Drawing.Color.White;
+            this.l_n.Location = new System.Drawing.Point(398, 54);
+            this.l_n.Name = "l_n";
+            this.l_n.Size = new System.Drawing.Size(16, 15);
+            this.l_n.TabIndex = 36;
+            this.l_n.Text = "   ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(360, 78);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(45, 15);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "F(n)   =";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(360, 54);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 15);
+            this.label12.TabIndex = 34;
+            this.label12.Text = "N   =";
+            // 
             // lable3
             // 
             this.lable3.AutoSize = true;
             this.lable3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lable3.ForeColor = System.Drawing.Color.White;
-            this.lable3.Location = new System.Drawing.Point(25, 102);
+            this.lable3.Location = new System.Drawing.Point(19, 78);
             this.lable3.Name = "lable3";
             this.lable3.Size = new System.Drawing.Size(36, 15);
             this.lable3.TabIndex = 28;
@@ -625,7 +703,7 @@
             this.l_x1.AutoSize = true;
             this.l_x1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.l_x1.ForeColor = System.Drawing.Color.White;
-            this.l_x1.Location = new System.Drawing.Point(61, 78);
+            this.l_x1.Location = new System.Drawing.Point(64, 54);
             this.l_x1.Name = "l_x1";
             this.l_x1.Size = new System.Drawing.Size(16, 15);
             this.l_x1.TabIndex = 29;
@@ -636,7 +714,7 @@
             this.lable2.AutoSize = true;
             this.lable2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lable2.ForeColor = System.Drawing.Color.White;
-            this.lable2.Location = new System.Drawing.Point(25, 78);
+            this.lable2.Location = new System.Drawing.Point(19, 54);
             this.lable2.Name = "lable2";
             this.lable2.Size = new System.Drawing.Size(36, 15);
             this.lable2.TabIndex = 30;
@@ -647,7 +725,7 @@
             this.lable.AutoSize = true;
             this.lable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lable.ForeColor = System.Drawing.Color.White;
-            this.lable.Location = new System.Drawing.Point(31, 54);
+            this.lable.Location = new System.Drawing.Point(195, 54);
             this.lable.Name = "lable";
             this.lable.Size = new System.Drawing.Size(30, 15);
             this.lable.TabIndex = 31;
@@ -658,7 +736,7 @@
             this.l_x2.AutoSize = true;
             this.l_x2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.l_x2.ForeColor = System.Drawing.Color.White;
-            this.l_x2.Location = new System.Drawing.Point(61, 102);
+            this.l_x2.Location = new System.Drawing.Point(64, 78);
             this.l_x2.Name = "l_x2";
             this.l_x2.Size = new System.Drawing.Size(16, 15);
             this.l_x2.TabIndex = 32;
@@ -669,7 +747,7 @@
             this.l_delta.AutoSize = true;
             this.l_delta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.l_delta.ForeColor = System.Drawing.Color.White;
-            this.l_delta.Location = new System.Drawing.Point(62, 54);
+            this.l_delta.Location = new System.Drawing.Point(231, 54);
             this.l_delta.Name = "l_delta";
             this.l_delta.Size = new System.Drawing.Size(16, 15);
             this.l_delta.TabIndex = 33;
@@ -771,6 +849,12 @@
         private System.Windows.Forms.Label lable;
         private System.Windows.Forms.Label l_x2;
         private System.Windows.Forms.Label l_delta;
+        private System.Windows.Forms.Label l_kvalue;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label l_Fn;
+        private System.Windows.Forms.Label l_n;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
 
     }
 }

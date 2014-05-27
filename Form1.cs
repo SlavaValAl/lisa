@@ -22,7 +22,7 @@
         static List<Segment> stepList;
         static float[,] pointList;
         public static List<Point> searcheablePointList;
-        static InfoBlock FormInfoBlock;
+        InfoBlock FormInfoBlock;
         List<float[,]> StepPointList;
         static Minimax result;
         Thread tr;
@@ -30,6 +30,7 @@
         delegate void newDel();
         bool pauseDrawingFlag = false;
         bool drawingProcessFlag = false;
+        List<AdditionInfo> addInfoList = new List<AdditionInfo>(20);
 
         public Form1()
         {
@@ -112,7 +113,8 @@
                 FillStepPointRangeList(temp_cur);
                 index = 0;
                 //StepPointList = calcmt.TreatLastElement(StepPointList);
-                Form1.FormInfoBlock = calcmt.infoBlock;
+                this.FormInfoBlock = calcmt.infoBlock;
+                this.addInfoList = calcmt.addInfoList;
                 DrawGraph(index);
                 TurnOnControlButton();
                 //some magic
@@ -266,9 +268,9 @@
 
         private void RedrawBoundaryElements(int localindex)
         {
-            l_x1.Text = (localindex == 0) ? Form1.FormInfoBlock.left_border : Form1.stepList.ElementAt(localindex).x1.ToString();
-            l_x2.Text = (localindex == 0) ? Form1.FormInfoBlock.right_border : Form1.stepList.ElementAt(localindex).x2.ToString();
-            l_delta.Text = (localindex == 0) ? Form1.FormInfoBlock.delta : Form1.stepList.ElementAt(localindex);
+            l_x1.Text = (localindex == 0) ? this.FormInfoBlock.left_border : Form1.stepList.ElementAt(localindex).x1.ToString();
+            l_x2.Text = (localindex == 0) ? this.FormInfoBlock.right_border : Form1.stepList.ElementAt(localindex).x2.ToString();
+            l_delta.Text = (localindex == 0) ? this.FormInfoBlock.delta : this.addInfoList.ElementAt(localindex).delta.ToString();
         }
 
         private static ILScene SetScaleModes(ILScene scene)

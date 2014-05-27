@@ -8,6 +8,7 @@
 
     public class Fibonachi : BaseMethod
     {
+        
         public override void CalculateByType(MethodType mType)
         {
             float answer = 0;
@@ -15,10 +16,11 @@
             float b = (float)this.B;
             double e = this.E;
             float D = 0;
-            int N = 1;
+            int N = 2;
             Dictionary<int, int> IndexValueList = new Dictionary<int, int>();
-            IndexValueList.Add(0, 1);
+            IndexValueList.Add(0, 0);
             IndexValueList.Add(1, 1);
+            IndexValueList.Add(2, 1);
             double de;
             float dx;
             float x1;
@@ -28,7 +30,7 @@
 
             de = (b - a) / e;
 
-            while (IndexValueList[N - 1] < de)
+            while (IndexValueList[N] < de)
             {
                 N++;
                 IndexValueList.Add(N, (IndexValueList[N - 1] + IndexValueList[N - 2]));
@@ -45,14 +47,14 @@
                 this.minStepsArray = new List<Segment>();
             }
 
-            for (int j = 1; j <= (N - 3); j++)
+            for (int j = 0; j < (N - 2); j++)
             {
                 if (Compare(mType, y1, y2))
                 {
                     b = x2;
                     x2 = x1;
                     y2 = y1;
-                    x1 = a + b - x2;
+                    x1 = a + IndexValueList[N - j - 2] *(b - a)/ IndexValueList[N - j];
                     y1 = this.Y(x1);
                 }
 
@@ -62,36 +64,12 @@
                     x1 = x2;
                     y1 = y2;
 
-                    x2 = a + b - x1;
+                    x2 = a + IndexValueList[N - j - 1] * (b - a) / IndexValueList[N - j];
                     y2 = this.Y(x2);
                 }
                 this.AddStep(a, b, mType);
             }
-
-            if (Compare(mType, y1, y2))
-            {
-                b = x2;
-                x2 = x1;
-                y2 = y1;
-            }
-            else
-            {
-                a = x1;
-            }
-            x1 = x2 - D;
-            y1 = this.Y(x1);
-
-            this.AddStep(a, b, mType);
-
-            if (Compare(mType, y1, y2))
-            {
-                b = x2;
-            }
-            else
-            {
-                a = x1;
-            }
-
+       
             answer = (a + b) / 2;
 
             this.AddStep(answer, answer, mType);
@@ -114,6 +92,18 @@
                 case MethodType.Maximum: return y1 > y2;
                 default: throw new Exception("Передан неверный тип значения");
             }
+        }
+
+        //public override void Info(string str_info)
+        //{
+        //    str_info = "Метод золотого сечения";
+        //}
+        public override void Info(string str_info, string delta, string x1, string x2)
+        {
+            str_info = "метод Фибоначчи";
+            delta = "";
+            x1 = "a + 0,382( b - a )";
+            x2 = "b - 0,382( b - a )";
         }
     }
 }

@@ -74,6 +74,14 @@
             this.bt_start = new System.Windows.Forms.Button();
             this.bt_stop = new System.Windows.Forms.Button();
             this.t_speed = new System.Windows.Forms.TrackBar();
+            this.rtbInfo = new System.Windows.Forms.RichTextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lable3 = new System.Windows.Forms.Label();
+            this.l_x1 = new System.Windows.Forms.Label();
+            this.lable2 = new System.Windows.Forms.Label();
+            this.lable = new System.Windows.Forms.Label();
+            this.l_x2 = new System.Windows.Forms.Label();
+            this.l_delta = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.p_results.SuspendLayout();
@@ -84,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.p_dynamic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.t_speed)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbFunctionType
@@ -464,7 +473,7 @@
             // 
             this.trackBar2.Location = new System.Drawing.Point(3, 3);
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(279, 42);
+            this.trackBar2.Size = new System.Drawing.Size(279, 45);
             this.trackBar2.TabIndex = 0;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -472,7 +481,7 @@
             // 
             this.trackBar1.Location = new System.Drawing.Point(0, 1);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(290, 42);
+            this.trackBar1.Size = new System.Drawing.Size(290, 45);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -565,17 +574,114 @@
             this.t_speed.Maximum = 5;
             this.t_speed.Minimum = 1;
             this.t_speed.Name = "t_speed";
-            this.t_speed.Size = new System.Drawing.Size(287, 42);
+            this.t_speed.Size = new System.Drawing.Size(287, 45);
             this.t_speed.TabIndex = 0;
             this.t_speed.TickStyle = System.Windows.Forms.TickStyle.None;
             this.t_speed.Value = 1;
+            // 
+            // rtbInfo
+            // 
+            this.rtbInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.rtbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
+            this.rtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.rtbInfo.ForeColor = System.Drawing.Color.White;
+            this.rtbInfo.Location = new System.Drawing.Point(0, 3);
+            this.rtbInfo.Name = "rtbInfo";
+            this.rtbInfo.ReadOnly = true;
+            this.rtbInfo.Size = new System.Drawing.Size(550, 131);
+            this.rtbInfo.TabIndex = 26;
+            this.rtbInfo.Text = "";
+            this.rtbInfo.UseWaitCursor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.lable3);
+            this.panel3.Controls.Add(this.l_x1);
+            this.panel3.Controls.Add(this.lable2);
+            this.panel3.Controls.Add(this.lable);
+            this.panel3.Controls.Add(this.l_x2);
+            this.panel3.Controls.Add(this.l_delta);
+            this.panel3.Controls.Add(this.rtbInfo);
+            this.panel3.Location = new System.Drawing.Point(621, 319);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(550, 137);
+            this.panel3.TabIndex = 28;
+            this.panel3.Visible = false;
+            // 
+            // lable3
+            // 
+            this.lable3.AutoSize = true;
+            this.lable3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lable3.ForeColor = System.Drawing.Color.White;
+            this.lable3.Location = new System.Drawing.Point(25, 102);
+            this.lable3.Name = "lable3";
+            this.lable3.Size = new System.Drawing.Size(36, 15);
+            this.lable3.TabIndex = 28;
+            this.lable3.Text = "x2   =";
+            // 
+            // l_x1
+            // 
+            this.l_x1.AutoSize = true;
+            this.l_x1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_x1.ForeColor = System.Drawing.Color.White;
+            this.l_x1.Location = new System.Drawing.Point(61, 78);
+            this.l_x1.Name = "l_x1";
+            this.l_x1.Size = new System.Drawing.Size(16, 15);
+            this.l_x1.TabIndex = 29;
+            this.l_x1.Text = "   ";
+            // 
+            // lable2
+            // 
+            this.lable2.AutoSize = true;
+            this.lable2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lable2.ForeColor = System.Drawing.Color.White;
+            this.lable2.Location = new System.Drawing.Point(25, 78);
+            this.lable2.Name = "lable2";
+            this.lable2.Size = new System.Drawing.Size(36, 15);
+            this.lable2.TabIndex = 30;
+            this.lable2.Text = "x1   =";
+            // 
+            // lable
+            // 
+            this.lable.AutoSize = true;
+            this.lable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lable.ForeColor = System.Drawing.Color.White;
+            this.lable.Location = new System.Drawing.Point(31, 54);
+            this.lable.Name = "lable";
+            this.lable.Size = new System.Drawing.Size(30, 15);
+            this.lable.TabIndex = 31;
+            this.lable.Text = "δ   =";
+            // 
+            // l_x2
+            // 
+            this.l_x2.AutoSize = true;
+            this.l_x2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_x2.ForeColor = System.Drawing.Color.White;
+            this.l_x2.Location = new System.Drawing.Point(61, 102);
+            this.l_x2.Name = "l_x2";
+            this.l_x2.Size = new System.Drawing.Size(16, 15);
+            this.l_x2.TabIndex = 32;
+            this.l_x2.Text = "   ";
+            // 
+            // l_delta
+            // 
+            this.l_delta.AutoSize = true;
+            this.l_delta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_delta.ForeColor = System.Drawing.Color.White;
+            this.l_delta.Location = new System.Drawing.Point(62, 54);
+            this.l_delta.Name = "l_delta";
+            this.l_delta.Size = new System.Drawing.Size(16, 15);
+            this.l_delta.TabIndex = 33;
+            this.l_delta.Text = "   ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1194, 480);
+            this.ClientSize = new System.Drawing.Size(1184, 467);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.p_dynamic);
             this.Controls.Add(this.p_step);
             this.Controls.Add(this.p_static);
@@ -603,6 +709,8 @@
             this.p_dynamic.ResumeLayout(false);
             this.p_dynamic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.t_speed)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -655,6 +763,14 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tb_stepnumber;
         private System.Windows.Forms.TrackBar t_speed;
+        private System.Windows.Forms.RichTextBox rtbInfo;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lable3;
+        private System.Windows.Forms.Label l_x1;
+        private System.Windows.Forms.Label lable2;
+        private System.Windows.Forms.Label lable;
+        private System.Windows.Forms.Label l_x2;
+        private System.Windows.Forms.Label l_delta;
 
     }
 }

@@ -18,6 +18,7 @@
         protected List<Segment> minStepsArray = new List<Segment>();
         protected List<Segment> maxStepsArray = new List<Segment>();
 
+
         public float GetYbyX(float x)
         {
             return this.Y(x);
@@ -34,6 +35,10 @@
 
         public virtual void CalculateByType(MethodType mType)
         { }
+
+        public virtual void Info(string str_info, string delta, string x1, string x2)
+        { }
+
 
         public void Calculate()
         {
@@ -129,6 +134,19 @@
             steplist.Add(elres);
             return steplist;
         }
+
+        //public string INFO
+        //{
+        //    set
+        //    {
+        //        this.Info(info);
+        //    }
+        //    get
+        //    {
+        //        return info;
+        //    }
+            
+        //}
     }
 
 
@@ -155,5 +173,6 @@
             this.y = Y;
             this.z = 0;
         }
+
     }
 }

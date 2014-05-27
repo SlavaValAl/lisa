@@ -87,8 +87,10 @@
                 }
                 catch (Exception)
                 {
-                    throw new Exception("Неверное значение полей для ввода");
+                    throw new Exception("Неверное значение полей для ввода.");
                 }
+
+                if ((temp_cur <= 0) || (temp_cur >=1)) throw new Exception("Неверный ввод! Точность задается в диапозоне от 0 до 1."); 
 
                 var mt = rb_max.Checked ? MethodType.Maximum : MethodType.Minimum;
                 var funcNum = ((KeyValuePair<int, string>)cbFunctionType.SelectedItem).Key;
@@ -113,6 +115,7 @@
                 TurnOnControlButton();
                 //some magic
 
+                
                 switch (((KeyValuePair<int, string>)cb_mode.SelectedItem).Key)
                 {
                     case 1:
@@ -120,6 +123,7 @@
                             p_dynamic.Visible = true;
                             p_step.Visible = false;
                             p_static.Visible = false;
+                            panel3.Visible = false;
                             break;
                         }
                     case 2:
@@ -127,6 +131,8 @@
                             p_dynamic.Visible = false;
                             p_step.Visible = true;
                             p_static.Visible = false;
+                            panel3.Visible = true;
+                            calcmt.Info(rtbInfo.Text,l_delta.Text,l_x1.Text,l_x2.Text);
                             break;
                         }
                     case 3:
@@ -134,6 +140,7 @@
                             p_dynamic.Visible = false;
                             p_step.Visible = false;
                             p_static.Visible = true;
+                            panel3.Visible = false;
                             DrawGraph(StepPointList.Count - 1);
                             break;
                         }

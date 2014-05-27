@@ -10,6 +10,7 @@
 
     public class Gold : BaseMethod
     {
+       
         public override void CalculateByType(MethodType mType)
         {
             float answer = 0;
@@ -20,6 +21,7 @@
             float x2;
             float y1;
             float y2;
+            
             if (mType.HasFlag(MethodType.Minimum))
             {
                 this.minStepsArray = new List<Segment>();
@@ -65,6 +67,14 @@
                 case MethodType.Maximum: return y1 > y2;
                 default: throw new Exception("Передан неверный тип значения");
             }
+        }
+
+        public override void Info(string str_info,string delta,string x1,string x2)
+        {
+            str_info = "Данный метод заключается в";
+            delta = "";
+            x1 = "a + 0,382( b - a )";
+            x2 = "b - 0,382( b - a )";
         }
     }
 }

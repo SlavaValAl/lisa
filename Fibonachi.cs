@@ -8,14 +8,12 @@
 
     public class Fibonachi : BaseMethod
     {
-        
         public override void CalculateByType(MethodType mType)
         {
             float answer = 0;
             float a = (float)this.A;
             float b = (float)this.B;
             double e = this.E;
-            float D = 0;
             int N = 2;
             Dictionary<int, int> IndexValueList = new Dictionary<int, int>();
             IndexValueList.Add(0, 0);
@@ -47,6 +45,7 @@
                 this.minStepsArray = new List<Segment>();
             }
 
+            this.AddStep(a, b, mType);
             for (int j = 0; j < (N - 2); j++)
             {
                 if (Compare(mType, y1, y2))
@@ -54,7 +53,7 @@
                     b = x2;
                     x2 = x1;
                     y2 = y1;
-                    x1 = a + IndexValueList[N - j - 2] *(b - a)/ IndexValueList[N - j];
+                    x1 = a + IndexValueList[N - j - 2] * (b - a) / IndexValueList[N - j];
                     y1 = this.Y(x1);
                 }
 
@@ -69,7 +68,7 @@
                 }
                 this.AddStep(a, b, mType);
             }
-       
+
             answer = (a + b) / 2;
 
             this.AddStep(answer, answer, mType);
@@ -94,16 +93,10 @@
             }
         }
 
-        //public override void Info(string str_info)
-        //{
-        //    str_info = "Метод золотого сечения";
-        //}
-        public override void Info(string str_info, string delta, string x1, string x2)
+        public override void FillInfoBlock()
         {
-            str_info = "метод Фибоначчи";
-            delta = "";
-            x1 = "a + 0,382( b - a )";
-            x2 = "b - 0,382( b - a )";
+            InfoBlock.message = "метод Фибоначчи";
+            this.infoBlock = new InfoBlock("a + 0,382( b - a )", "b - 0,382( b - a )", string.Empty);
         }
     }
 }

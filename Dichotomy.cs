@@ -18,18 +18,18 @@
             float x2 = 0;
             float y1 = 0;
             float y2 = 0;
-            float sigma = 0;
+            float delta = 0;
 
             if (mType.HasFlag(MethodType.Minimum))
             {
                 this.minStepsArray = new List<Segment>();
             }
-
+            this.AddStep(a, b, mType);
             while (b - a > e)
             {
-                sigma = (b - a) / 4;
-                x1 = ((b + a) / 2) - sigma;
-                x2 = ((b + a) / 2) + sigma;
+                delta = (b - a) / 4;
+                x1 = ((b + a) / 2) - delta;
+                x2 = ((b + a) / 2) + delta;
                 y1 = this.Y(x1);
                 y2 = this.Y(x2);
 
@@ -68,13 +68,10 @@
             }
         }
 
-        public override void Info(string str_info,string delta,string x1,string x2)
+        public override void FillInfoBlock()
         {
-            str_info = "Данный метод заключается в последовательном делении заданного интервала пополам. На каждом шаге поиска экстремума вычисляются значения x1 и x2, затем вычисляются значения f(x1) и f(x2). После чего сравниваются полученные значения.";
-            delta = "( b - a ) / 4";
-            x1 = "( b + a ) / 2  - δ";
-            x2 = "( b + a ) / 2  + δ";
-            //return str_info;
+            InfoBlock.message = "Данный метод заключается в последовательном делении заданного интервала пополам. На каждом шаге поиска экстремума вычисляются значения x1 и x2, затем вычисляются значения f(x1) и f(x2). После чего сравниваются полученные значения.";
+            this.infoBlock = new InfoBlock("( b + a ) / 2  - δ", "( b + a ) / 2  + δ", "( b - a ) / 4");
         }
     }
 }

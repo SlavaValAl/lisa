@@ -17,7 +17,7 @@
         protected MyDel Y { get; set; }
         protected List<Segment> minStepsArray = new List<Segment>();
         protected List<Segment> maxStepsArray = new List<Segment>();
-
+        public InfoBlock infoBlock = new InfoBlock();
 
         public float GetYbyX(float x)
         {
@@ -31,14 +31,14 @@
             this.B = end;
             this.E = cur;
             this.Y = y;
+            this.FillInfoBlock();
         }
 
         public virtual void CalculateByType(MethodType mType)
         { }
 
-        public virtual void Info(string str_info, string delta, string x1, string x2)
+        public virtual void FillInfoBlock()
         { }
-
 
         public void Calculate()
         {
@@ -134,19 +134,6 @@
             steplist.Add(elres);
             return steplist;
         }
-
-        //public string INFO
-        //{
-        //    set
-        //    {
-        //        this.Info(info);
-        //    }
-        //    get
-        //    {
-        //        return info;
-        //    }
-            
-        //}
     }
 
 
@@ -173,6 +160,20 @@
             this.y = Y;
             this.z = 0;
         }
+    }
 
+    public struct InfoBlock
+    {
+        public static string message;
+        public string left_border;
+        public string right_border;
+        public string delta;
+
+        public InfoBlock(string left_border, string right_border, string delta)
+        {
+            this.left_border = left_border;
+            this.right_border = right_border;
+            this.delta = delta;
+        }
     }
 }

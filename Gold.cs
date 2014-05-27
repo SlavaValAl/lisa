@@ -10,7 +10,7 @@
 
     public class Gold : BaseMethod
     {
-       
+
         public override void CalculateByType(MethodType mType)
         {
             float answer = 0;
@@ -21,12 +21,12 @@
             float x2;
             float y1;
             float y2;
-            
+            InfoBlock.message = "Данный метод заключается в";
             if (mType.HasFlag(MethodType.Minimum))
             {
                 this.minStepsArray = new List<Segment>();
             }
-
+            this.AddStep(a, b, mType);
             while (Math.Abs(b - a) > e)
             {
                 x1 = b - (b - a) / BaseMethod.F;
@@ -69,12 +69,10 @@
             }
         }
 
-        public override void Info(string str_info,string delta,string x1,string x2)
+        public override void FillInfoBlock()
         {
-            str_info = "Данный метод заключается в";
-            delta = "";
-            x1 = "a + 0,382( b - a )";
-            x2 = "b - 0,382( b - a )";
+            InfoBlock.message = "Данный метод заключается в";
+            this.infoBlock = new InfoBlock("a + 0,382( b - a )", "b - 0,382( b - a )", string.Empty);
         }
     }
 }

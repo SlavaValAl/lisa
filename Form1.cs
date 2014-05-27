@@ -22,6 +22,7 @@
         static List<Segment> stepList;
         static float[,] pointList;
         public static List<Point> searcheablePointList;
+        static InfoBlock FormInfoBlock;
         List<float[,]> StepPointList;
         static Minimax result;
         Thread tr;
@@ -90,7 +91,7 @@
                     throw new Exception("Неверное значение полей для ввода.");
                 }
 
-                if ((temp_cur <= 0) || (temp_cur >=1)) throw new Exception("Неверный ввод! Точность задается в диапозоне от 0 до 1."); 
+                if ((temp_cur <= 0) || (temp_cur >= 1)) throw new Exception("Неверный ввод! Точность задается в диапозоне от 0 до 1.");
 
                 var mt = rb_max.Checked ? MethodType.Maximum : MethodType.Minimum;
                 var funcNum = ((KeyValuePair<int, string>)cbFunctionType.SelectedItem).Key;
@@ -108,14 +109,16 @@
                 //some magic
                 pointList = calcmt.GetPoints();
                 stepList = calcmt.GetSteps(mt);
-                FillStepPointRangeList();
+                FillStepPointRangeList(temp_cur);
                 index = 0;
                 //StepPointList = calcmt.TreatLastElement(StepPointList);
+                Form1.FormInfoBlock = calcmt.infoBlock;
                 DrawGraph(index);
                 TurnOnControlButton();
                 //some magic
-
+                rtbInfo.Text = InfoBlock.message;
                 
+
                 switch (((KeyValuePair<int, string>)cb_mode.SelectedItem).Key)
                 {
                     case 1:
@@ -132,7 +135,7 @@
                             p_step.Visible = true;
                             p_static.Visible = false;
                             panel3.Visible = true;
-                            calcmt.Info(rtbInfo.Text,l_delta.Text,l_x1.Text,l_x2.Text);
+                            //calcmt.Info(rtbInfo.Text, l_delta.Text, l_x1.Text, l_x2.Text);
                             break;
                         }
                     case 3:
@@ -159,14 +162,13 @@
             }
         }
 
-        private void FillStepPointRangeList()
+        private void FillStepPointRangeList(double currency)
         {
             StepPointList = new List<float[,]>(stepList.Count);
             int startIndex;
             int endIndex;
             int range;
             float[,] mas;
-            StepPointList.Add(pointList);
 
             for (int i = 0; i < stepList.Count; i++)
             {
@@ -259,6 +261,14 @@
     };
             this.ilPanel1.Scene = SetScaleModes(scene);
             this.ilPanel1.Invoke(new newDel(() => ilPanel1.Refresh()));
+            RedrawBoundaryElements(localindex);
+        }
+
+        private void RedrawBoundaryElements(int localindex)
+        {
+            l_x1.Text = (localindex == 0) ? Form1.FormInfoBlock.left_border : Form1.stepList.ElementAt(localindex).x1.ToString();
+            l_x2.Text = (localindex == 0) ? Form1.FormInfoBlock.right_border : Form1.stepList.ElementAt(localindex).x2.ToString();
+            l_delta.Text = (localindex == 0) ? Form1.FormInfoBlock.delta : Form1.stepList.ElementAt(localindex);
         }
 
         private static ILScene SetScaleModes(ILScene scene)

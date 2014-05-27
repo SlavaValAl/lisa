@@ -473,7 +473,7 @@
             // 
             this.trackBar2.Location = new System.Drawing.Point(3, 3);
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(279, 45);
+            this.trackBar2.Size = new System.Drawing.Size(279, 42);
             this.trackBar2.TabIndex = 0;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -481,7 +481,7 @@
             // 
             this.trackBar1.Location = new System.Drawing.Point(0, 1);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(290, 45);
+            this.trackBar1.Size = new System.Drawing.Size(290, 42);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -574,7 +574,7 @@
             this.t_speed.Maximum = 5;
             this.t_speed.Minimum = 1;
             this.t_speed.Name = "t_speed";
-            this.t_speed.Size = new System.Drawing.Size(287, 45);
+            this.t_speed.Size = new System.Drawing.Size(287, 42);
             this.t_speed.TabIndex = 0;
             this.t_speed.TickStyle = System.Windows.Forms.TickStyle.None;
             this.t_speed.Value = 1;
@@ -589,7 +589,7 @@
             this.rtbInfo.Location = new System.Drawing.Point(0, 3);
             this.rtbInfo.Name = "rtbInfo";
             this.rtbInfo.ReadOnly = true;
-            this.rtbInfo.Size = new System.Drawing.Size(550, 131);
+            this.rtbInfo.Size = new System.Drawing.Size(550, 48);
             this.rtbInfo.TabIndex = 26;
             this.rtbInfo.Text = "";
             this.rtbInfo.UseWaitCursor = true;
@@ -680,7 +680,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1184, 467);
+            this.ClientSize = new System.Drawing.Size(1194, 480);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.p_dynamic);
             this.Controls.Add(this.p_step);

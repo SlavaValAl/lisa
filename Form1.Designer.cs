@@ -74,20 +74,22 @@
             this.bt_start = new System.Windows.Forms.Button();
             this.bt_stop = new System.Windows.Forms.Button();
             this.t_speed = new System.Windows.Forms.TrackBar();
-            this.rtbInfo = new System.Windows.Forms.RichTextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.l_kvalue = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.l_Fn = new System.Windows.Forms.Label();
-            this.l_n = new System.Windows.Forms.Label();
+            this.panel_steps = new System.Windows.Forms.Panel();
+            this.p_dihotomy = new System.Windows.Forms.Panel();
+            this.l_delta = new System.Windows.Forms.Label();
+            this.lable = new System.Windows.Forms.Label();
+            this.p_fibonachi = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
+            this.l_kvalue = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.l_n = new System.Windows.Forms.Label();
+            this.l_Fn = new System.Windows.Forms.Label();
+            this.rtbInfo = new System.Windows.Forms.RichTextBox();
             this.lable3 = new System.Windows.Forms.Label();
             this.l_x1 = new System.Windows.Forms.Label();
             this.lable2 = new System.Windows.Forms.Label();
-            this.lable = new System.Windows.Forms.Label();
             this.l_x2 = new System.Windows.Forms.Label();
-            this.l_delta = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.p_results.SuspendLayout();
@@ -98,7 +100,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.p_dynamic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.t_speed)).BeginInit();
-            this.panel3.SuspendLayout();
+            this.panel_steps.SuspendLayout();
+            this.p_dihotomy.SuspendLayout();
+            this.p_fibonachi.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbFunctionType
@@ -585,114 +589,145 @@
             this.t_speed.TickStyle = System.Windows.Forms.TickStyle.None;
             this.t_speed.Value = 1;
             // 
-            // rtbInfo
+            // panel_steps
             // 
-            this.rtbInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.rtbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
-            this.rtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.rtbInfo.ForeColor = System.Drawing.Color.White;
-            this.rtbInfo.Location = new System.Drawing.Point(0, 0);
-            this.rtbInfo.Name = "rtbInfo";
-            this.rtbInfo.ReadOnly = true;
-            this.rtbInfo.Size = new System.Drawing.Size(550, 48);
-            this.rtbInfo.TabIndex = 26;
-            this.rtbInfo.Text = "";
-            this.rtbInfo.UseWaitCursor = true;
+            this.panel_steps.Controls.Add(this.p_dihotomy);
+            this.panel_steps.Controls.Add(this.p_fibonachi);
+            this.panel_steps.Controls.Add(this.rtbInfo);
+            this.panel_steps.Controls.Add(this.lable3);
+            this.panel_steps.Controls.Add(this.l_x1);
+            this.panel_steps.Controls.Add(this.lable2);
+            this.panel_steps.Controls.Add(this.l_x2);
+            this.panel_steps.Location = new System.Drawing.Point(621, 319);
+            this.panel_steps.Name = "panel_steps";
+            this.panel_steps.Size = new System.Drawing.Size(550, 137);
+            this.panel_steps.TabIndex = 28;
+            this.panel_steps.Visible = false;
             // 
-            // panel3
+            // p_dihotomy
             // 
-            this.panel3.Controls.Add(this.l_kvalue);
-            this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.l_Fn);
-            this.panel3.Controls.Add(this.l_n);
-            this.panel3.Controls.Add(this.label13);
-            this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.lable3);
-            this.panel3.Controls.Add(this.l_x1);
-            this.panel3.Controls.Add(this.lable2);
-            this.panel3.Controls.Add(this.lable);
-            this.panel3.Controls.Add(this.l_x2);
-            this.panel3.Controls.Add(this.l_delta);
-            this.panel3.Controls.Add(this.rtbInfo);
-            this.panel3.Location = new System.Drawing.Point(621, 319);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(550, 137);
-            this.panel3.TabIndex = 28;
-            this.panel3.Visible = false;
+            this.p_dihotomy.Controls.Add(this.l_delta);
+            this.p_dihotomy.Controls.Add(this.lable);
+            this.p_dihotomy.Location = new System.Drawing.Point(174, 68);
+            this.p_dihotomy.Name = "p_dihotomy";
+            this.p_dihotomy.Size = new System.Drawing.Size(88, 39);
+            this.p_dihotomy.TabIndex = 42;
             // 
-            // l_kvalue
+            // l_delta
             // 
-            this.l_kvalue.AutoSize = true;
-            this.l_kvalue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.l_kvalue.ForeColor = System.Drawing.Color.White;
-            this.l_kvalue.Location = new System.Drawing.Point(399, 102);
-            this.l_kvalue.Name = "l_kvalue";
-            this.l_kvalue.Size = new System.Drawing.Size(16, 15);
-            this.l_kvalue.TabIndex = 39;
-            this.l_kvalue.Text = "   ";
+            this.l_delta.AutoSize = true;
+            this.l_delta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_delta.ForeColor = System.Drawing.Color.White;
+            this.l_delta.Location = new System.Drawing.Point(48, 12);
+            this.l_delta.Name = "l_delta";
+            this.l_delta.Size = new System.Drawing.Size(16, 15);
+            this.l_delta.TabIndex = 33;
+            this.l_delta.Text = "   ";
             // 
-            // label11
+            // lable
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(363, 102);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 15);
-            this.label11.TabIndex = 38;
-            this.label11.Text = "k   =";
+            this.lable.AutoSize = true;
+            this.lable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lable.ForeColor = System.Drawing.Color.White;
+            this.lable.Location = new System.Drawing.Point(12, 12);
+            this.lable.Name = "lable";
+            this.lable.Size = new System.Drawing.Size(30, 15);
+            this.lable.TabIndex = 31;
+            this.lable.Text = "δ   =";
             // 
-            // l_Fn
+            // p_fibonachi
             // 
-            this.l_Fn.AutoSize = true;
-            this.l_Fn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.l_Fn.ForeColor = System.Drawing.Color.White;
-            this.l_Fn.Location = new System.Drawing.Point(412, 78);
-            this.l_Fn.Name = "l_Fn";
-            this.l_Fn.Size = new System.Drawing.Size(16, 15);
-            this.l_Fn.TabIndex = 37;
-            this.l_Fn.Text = "   ";
-            // 
-            // l_n
-            // 
-            this.l_n.AutoSize = true;
-            this.l_n.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.l_n.ForeColor = System.Drawing.Color.White;
-            this.l_n.Location = new System.Drawing.Point(398, 54);
-            this.l_n.Name = "l_n";
-            this.l_n.Size = new System.Drawing.Size(16, 15);
-            this.l_n.TabIndex = 36;
-            this.l_n.Text = "   ";
+            this.p_fibonachi.Controls.Add(this.label13);
+            this.p_fibonachi.Controls.Add(this.l_kvalue);
+            this.p_fibonachi.Controls.Add(this.label12);
+            this.p_fibonachi.Controls.Add(this.label11);
+            this.p_fibonachi.Controls.Add(this.l_n);
+            this.p_fibonachi.Controls.Add(this.l_Fn);
+            this.p_fibonachi.Location = new System.Drawing.Point(339, 57);
+            this.p_fibonachi.Name = "p_fibonachi";
+            this.p_fibonachi.Size = new System.Drawing.Size(108, 77);
+            this.p_fibonachi.TabIndex = 41;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(360, 78);
+            this.label13.Location = new System.Drawing.Point(14, 35);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 15);
             this.label13.TabIndex = 35;
             this.label13.Text = "F(n)   =";
+            // 
+            // l_kvalue
+            // 
+            this.l_kvalue.AutoSize = true;
+            this.l_kvalue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_kvalue.ForeColor = System.Drawing.Color.White;
+            this.l_kvalue.Location = new System.Drawing.Point(53, 59);
+            this.l_kvalue.Name = "l_kvalue";
+            this.l_kvalue.Size = new System.Drawing.Size(16, 15);
+            this.l_kvalue.TabIndex = 39;
+            this.l_kvalue.Text = "   ";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(360, 54);
+            this.label12.Location = new System.Drawing.Point(14, 11);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(32, 15);
             this.label12.TabIndex = 34;
             this.label12.Text = "N   =";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(17, 59);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 15);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "k   =";
+            // 
+            // l_n
+            // 
+            this.l_n.AutoSize = true;
+            this.l_n.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_n.ForeColor = System.Drawing.Color.White;
+            this.l_n.Location = new System.Drawing.Point(52, 11);
+            this.l_n.Name = "l_n";
+            this.l_n.Size = new System.Drawing.Size(16, 15);
+            this.l_n.TabIndex = 36;
+            this.l_n.Text = "   ";
+            // 
+            // l_Fn
+            // 
+            this.l_Fn.AutoSize = true;
+            this.l_Fn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.l_Fn.ForeColor = System.Drawing.Color.White;
+            this.l_Fn.Location = new System.Drawing.Point(66, 35);
+            this.l_Fn.Name = "l_Fn";
+            this.l_Fn.Size = new System.Drawing.Size(16, 15);
+            this.l_Fn.TabIndex = 37;
+            this.l_Fn.Text = "   ";
+            // 
+            // rtbInfo
+            // 
+            this.rtbInfo.Location = new System.Drawing.Point(3, 0);
+            this.rtbInfo.Name = "rtbInfo";
+            this.rtbInfo.Size = new System.Drawing.Size(547, 51);
+            this.rtbInfo.TabIndex = 40;
+            this.rtbInfo.Text = "";
             // 
             // lable3
             // 
             this.lable3.AutoSize = true;
             this.lable3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lable3.ForeColor = System.Drawing.Color.White;
-            this.lable3.Location = new System.Drawing.Point(19, 78);
+            this.lable3.Location = new System.Drawing.Point(19, 92);
             this.lable3.Name = "lable3";
             this.lable3.Size = new System.Drawing.Size(36, 15);
             this.lable3.TabIndex = 28;
@@ -703,7 +738,7 @@
             this.l_x1.AutoSize = true;
             this.l_x1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.l_x1.ForeColor = System.Drawing.Color.White;
-            this.l_x1.Location = new System.Drawing.Point(64, 54);
+            this.l_x1.Location = new System.Drawing.Point(64, 68);
             this.l_x1.Name = "l_x1";
             this.l_x1.Size = new System.Drawing.Size(16, 15);
             this.l_x1.TabIndex = 29;
@@ -714,44 +749,22 @@
             this.lable2.AutoSize = true;
             this.lable2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lable2.ForeColor = System.Drawing.Color.White;
-            this.lable2.Location = new System.Drawing.Point(19, 54);
+            this.lable2.Location = new System.Drawing.Point(19, 68);
             this.lable2.Name = "lable2";
             this.lable2.Size = new System.Drawing.Size(36, 15);
             this.lable2.TabIndex = 30;
             this.lable2.Text = "x1   =";
-            // 
-            // lable
-            // 
-            this.lable.AutoSize = true;
-            this.lable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lable.ForeColor = System.Drawing.Color.White;
-            this.lable.Location = new System.Drawing.Point(195, 54);
-            this.lable.Name = "lable";
-            this.lable.Size = new System.Drawing.Size(30, 15);
-            this.lable.TabIndex = 31;
-            this.lable.Text = "δ   =";
             // 
             // l_x2
             // 
             this.l_x2.AutoSize = true;
             this.l_x2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.l_x2.ForeColor = System.Drawing.Color.White;
-            this.l_x2.Location = new System.Drawing.Point(64, 78);
+            this.l_x2.Location = new System.Drawing.Point(64, 92);
             this.l_x2.Name = "l_x2";
             this.l_x2.Size = new System.Drawing.Size(16, 15);
             this.l_x2.TabIndex = 32;
             this.l_x2.Text = "   ";
-            // 
-            // l_delta
-            // 
-            this.l_delta.AutoSize = true;
-            this.l_delta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.l_delta.ForeColor = System.Drawing.Color.White;
-            this.l_delta.Location = new System.Drawing.Point(231, 54);
-            this.l_delta.Name = "l_delta";
-            this.l_delta.Size = new System.Drawing.Size(16, 15);
-            this.l_delta.TabIndex = 33;
-            this.l_delta.Text = "   ";
             // 
             // Form1
             // 
@@ -759,7 +772,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(0)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1194, 480);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel_steps);
             this.Controls.Add(this.p_dynamic);
             this.Controls.Add(this.p_step);
             this.Controls.Add(this.p_static);
@@ -787,8 +800,12 @@
             this.p_dynamic.ResumeLayout(false);
             this.p_dynamic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.t_speed)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panel_steps.ResumeLayout(false);
+            this.panel_steps.PerformLayout();
+            this.p_dihotomy.ResumeLayout(false);
+            this.p_dihotomy.PerformLayout();
+            this.p_fibonachi.ResumeLayout(false);
+            this.p_fibonachi.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -841,8 +858,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tb_stepnumber;
         private System.Windows.Forms.TrackBar t_speed;
-        private System.Windows.Forms.RichTextBox rtbInfo;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel_steps;
         private System.Windows.Forms.Label lable3;
         private System.Windows.Forms.Label l_x1;
         private System.Windows.Forms.Label lable2;
@@ -855,6 +871,9 @@
         private System.Windows.Forms.Label l_n;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel p_fibonachi;
+        private System.Windows.Forms.RichTextBox rtbInfo;
+        private System.Windows.Forms.Panel p_dihotomy;
 
     }
 }

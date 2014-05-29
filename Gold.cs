@@ -4,14 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
-    using System.Collections;
-    using System.Windows.Forms;
 
     public class Gold : BaseMethod
     {
-
-        public override void CalculateByType(MethodType mType)
+        public override void CalculateByType(SearchType mType)
         {
             float answer = 0;
             float a = (float)this.A;
@@ -21,8 +17,7 @@
             float x2;
             float y1;
             float y2;
-            InfoBlock.message = "Данный метод заключается в";
-            if (mType.HasFlag(MethodType.Minimum))
+            if (mType.HasFlag(SearchType.Minimum))
             {
                 this.minStepsArray = new List<Segment>();
             }
@@ -34,7 +29,7 @@
                 y1 = this.Y(x1);
                 y2 = this.Y(x2);
 
-                if (Compare(mType, y1, y2))
+                if (this.Compare(mType, y1, y2))
                 {
                     b = x2;
                 }
@@ -50,29 +45,25 @@
 
             switch (mType)
             {
-                case MethodType.Minimum: this.Min = answer;
+                case SearchType.Minimum: this.Min = answer;
                     break;
-                case MethodType.Maximum: this.Max = answer;
+                case SearchType.Maximum: this.Max = answer;
                     break;
                 default: throw new Exception("Передан неверный тип значения");
             }
 
-        }
-
-        private static bool Compare(MethodType mType, double y1, double y2)
-        {
-            switch (mType)
-            {
-                case MethodType.Minimum: return y1 < y2;
-                case MethodType.Maximum: return y1 > y2;
-                default: throw new Exception("Передан неверный тип значения");
-            }
         }
 
         public override void FillInfoBlock()
         {
-            InfoBlock.message = "Данный метод заключается в";
-            this.infoBlock = new InfoBlock("a + 0,382( b - a )", "b - 0,382( b - a )", string.Empty);
+            this.infoBlock = new InfoBlock(
+                "Данный метод заключается в",
+                "a + 0,382( b - a )",
+                "b - 0,382( b - a )", 
+                string.Empty, 
+                string.Empty, 
+                string.Empty, 
+                string.Empty);
         }
     }
 }

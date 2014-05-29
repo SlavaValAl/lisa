@@ -8,23 +8,44 @@
 
     public class BaseMethod
     {
+        protected const float F = 1.618F;
         protected double A { get; set; }
         protected double B { get; set; }
         protected double E { get; set; }
-        public float Min { get; set; }
-        public float Max { get; set; }
-        protected const float F = 1.618F;
         protected MyDel Y { get; set; }
         protected List<Segment> minStepsArray = new List<Segment>();
         protected List<Segment> maxStepsArray = new List<Segment>();
+        public float Min { get; set; }
+        public float Max { get; set; }
         public InfoBlock infoBlock = new InfoBlock();
         public List<AdditionInfo> addInfoList = new List<AdditionInfo>(20);
 
-        public float GetYbyX(float x)
+        private float[,] DeleteEmptyElements(float[,] temp)
         {
-            return this.Y(x);
+            var emptynum = 0;
+            var n = temp.GetLength(0) - 9;
+            while (n != temp.GetLength(0))
+            {
+                if (temp[n, 0] == 0 && temp[n, 1] == 0)
+                {
+                    emptynum++;
+                }
+                n++;
+            }
+            var resultarray = new float[temp.GetLength(0) - emptynum, 3];
+            Array.Copy(temp, 0, resultarray, 0, temp.Length - emptynum * 3 - 1);
+            return resultarray;
         }
 
+        protected bool Compare(SearchType mType, double y1, double y2)
+        {
+            switch (mType)
+            {
+                case SearchType.Minimum: return y1 < y2;
+                case SearchType.Maximum: return y1 > y2;
+                default: throw new Exception("Передан неверный тип значения");
+            }
+        }
 
         public void SetValues(double start, double end, double cur, MyDel y)
         {
@@ -35,49 +56,27 @@
             this.FillInfoBlock();
         }
 
-        public virtual void CalculateByType(MethodType mType)
-        { }
-
-        public virtual void FillInfoBlock()
-        { }
-
-        public void Calculate()
-        {
-            this.CalculateByType(MethodType.Maximum);
-            this.CalculateByType(MethodType.Minimum);
-        }
-
-        public string[] GetResults(MethodType mt)
-        {
-            return mt.HasFlag(MethodType.Minimum) ?
-                new string[2]
-                    {
-                       this.Min.ToString().PadRight(7,'0'),
-                       this.Y(this.Min).ToString().PadRight(7,'0')
-                    }
-            :
-            new string[2]
-                    {
-                       this.Max.ToString().PadRight(7,'0'),
-                       this.Y(this.Max).ToString().PadRight(7,'0')
-                    };
-        }
-
-        public List<Segment> GetSteps(MethodType mt)
-        {
-            return mt.HasFlag(MethodType.Maximum) ? this.maxStepsArray : this.minStepsArray;
-        }
-
-        public void AddStep(float x1, float x2, MethodType mt)
+        public void AddStep(float x1, float x2, SearchType mt)
         {
             switch (mt)
             {
-                case MethodType.Minimum: this.minStepsArray.Add(new Segment(x1, x2));
+                case SearchType.Minimum: this.minStepsArray.Add(new Segment(x1, x2));
                     break;
-                case MethodType.Maximum: this.maxStepsArray.Add(new Segment(x1, x2));
+                case SearchType.Maximum: this.maxStepsArray.Add(new Segment(x1, x2));
                     break;
                 default: throw new FormatException("Unexpected enumerator MethodType value");
             }
+        }
+
+        public void Calculate()
+        {
+            this.CalculateByType(SearchType.Maximum);
+            this.CalculateByType(SearchType.Minimum);
+        }
+
+        public float GetYbyX(float x)
+        {
+            return this.Y(x);
         }
 
         public float[,] GetPoints()
@@ -105,21 +104,31 @@
             return DeleteEmptyElements(temp);
         }
 
-        private float[,] DeleteEmptyElements(float[,] temp)
+        public string[] GetResults(SearchType mt)
         {
-            var emptynum = 0;
-            var n = temp.GetLength(0) - 9;
-            while (n != temp.GetLength(0))
-            {
-                if (temp[n, 0] == 0 && temp[n, 1] == 0)
-                {
-                    emptynum++;
-                }
-                n++;
-            }
-            var resultarray = new float[temp.GetLength(0) - emptynum, 3];
-            Array.Copy(temp, 0, resultarray, 0, temp.Length - emptynum * 3 - 1);
-            return resultarray;
+            return mt.HasFlag(SearchType.Minimum) ?
+                new string[2]
+                    {
+                       this.Min.ToString().PadRight(7,'0'),
+                       this.Y(this.Min).ToString().PadRight(7,'0')
+                    }
+            :
+            new string[2]
+                    {
+                       this.Max.ToString().PadRight(7,'0'),
+                       this.Y(this.Max).ToString().PadRight(7,'0')
+                    };
+        }
+
+        public virtual void CalculateByType(SearchType mType)
+        { }
+
+        public virtual void FillInfoBlock()
+        { }
+
+        public List<Segment> GetSteps(SearchType mt)
+        {
+            return mt.HasFlag(SearchType.Maximum) ? this.maxStepsArray : this.minStepsArray;
         }
 
         public List<float[,]> TreatLastElement(List<float[,]> steplist)
@@ -135,8 +144,24 @@
             steplist.Add(elres);
             return steplist;
         }
+
+        public static BaseMethod GetMethodType(int num)
+        {
+            switch (num)
+            {
+                case 1: return new Gold();
+                case 2: return new Fibonachi();
+                case 3: return new Dichotomy();
+                default: throw new Exception();
+            }
+        }
     }
 
+    public enum SearchType
+    {
+        Minimum = 1,
+        Maximum = 2
+    }
 
     public struct Segment
     {
@@ -165,29 +190,39 @@
 
     public struct InfoBlock
     {
-        public static string message;
+        public string message;
         public string left_border;
         public string right_border;
         public string delta;
+        public string Fn;
+        public string N;
+        public string k;
 
-        public InfoBlock(string left_border, string right_border, string delta)
+        public InfoBlock(string message, string left_border, string right_border, string delta, string Fn, string N, string k)
         {
+            this.message = message;
             this.left_border = left_border;
             this.right_border = right_border;
+            //dichotomy method
             this.delta = delta;
+            //fibonachi method
+            this.Fn = Fn;
+            this.N = N;
+            this.k = k;
         }
     }
+
     public struct AdditionInfo
     {
         public static int Fn;
         public static int N;
-        public float delta;
         public float k;
-        
-        public AdditionInfo(float delta, float k)
+        public float delta;
+
+        public AdditionInfo(float k, float delta)
         {
-            this.delta = delta;
             this.k = k;
+            this.delta = delta;
         }
     }
 }

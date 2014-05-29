@@ -4,13 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
 
-    class Dichotomy : BaseMethod
+    public class Dichotomy : BaseMethod
     {
-        public List<float> delta_array = new List<float>(20);
-
-        public override void CalculateByType(MethodType mType)
+        public override void CalculateByType(SearchType mType)
         {
             float answer = 0;
             float a = (float)this.A;
@@ -22,13 +19,13 @@
             float y2 = 0;
             float delta = 0;
 
-            if (mType.HasFlag(MethodType.Minimum))
+            if (mType.HasFlag(SearchType.Minimum))
             {
                 this.minStepsArray = new List<Segment>();
             }
 
             this.AddStep(a, b, mType);
-            addInfoList.Add(new AdditionInfo(e, 0));
+            addInfoList.Add(new AdditionInfo(0, e));
             while (b - a > e)
             {
                 delta = (b - a) / 4;
@@ -37,7 +34,7 @@
                 y1 = this.Y(x1);
                 y2 = this.Y(x2);
 
-                if (Compare(mType, y1, y2))
+                if (this.Compare(mType, y1, y2))
                 {
                     a = x1;
                 }
@@ -46,7 +43,7 @@
                     b = x2;
                 }
 
-                addInfoList.Add(new AdditionInfo(delta, 0));
+                addInfoList.Add(new AdditionInfo(0, delta));
                 this.AddStep(a, b, mType);
 
                 answer = (a + b) / 2;
@@ -55,28 +52,24 @@
 
             switch (mType)
             {
-                case MethodType.Minimum: this.Min = answer;
+                case SearchType.Minimum: this.Min = answer;
                     break;
-                case MethodType.Maximum: this.Max = answer;
+                case SearchType.Maximum: this.Max = answer;
                     break;
-                default: throw new Exception("Передан неверный тип значения");
-            }
-        }
-
-        private static bool Compare(MethodType mType, double y1, double y2)
-        {
-            switch (mType)
-            {
-                case MethodType.Minimum: return y1 > y2;
-                case MethodType.Maximum: return y1 < y2;
                 default: throw new Exception("Передан неверный тип значения");
             }
         }
 
         public override void FillInfoBlock()
         {
-            InfoBlock.message = "Данный метод заключается в последовательном делении заданного интервала пополам. На каждом шаге поиска экстремума вычисляются значения x1 и x2, затем вычисляются значения f(x1) и f(x2). После чего сравниваются полученные значения.";
-            this.infoBlock = new InfoBlock("( b + a ) / 2  - δ", "( b + a ) / 2  + δ", "( b - a ) / 4");
+            this.infoBlock = new InfoBlock(
+                "Данный метод заключается в последовательном делении заданного интервала пополам. На каждом шаге поиска экстремума вычисляются значения x1 и x2, затем вычисляются значения f(x1) и f(x2). После чего сравниваются полученные значения.",
+                "( b + a ) / 2  - δ",
+                "( b + a ) / 2  + δ",
+                "( b - a ) / 4", 
+                string.Empty, 
+                string.Empty, 
+                string.Empty);
         }
     }
 }

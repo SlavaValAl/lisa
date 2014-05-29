@@ -4,11 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
 
     public class Fibonachi : BaseMethod
     {
-        public override void CalculateByType(MethodType mType)
+        public override void CalculateByType(SearchType mType)
         {
             float answer = 0;
             float a = (float)this.A;
@@ -39,8 +38,10 @@
             y1 = this.Y(x1);
             x2 = a + dx * IndexValueList[N - 1];
             y2 = this.Y(x2);
+            AdditionInfo.N = N;
+            AdditionInfo.Fn = IndexValueList.Last().Value;
 
-            if (mType.HasFlag(MethodType.Minimum))
+            if (mType.HasFlag(SearchType.Minimum))
             {
                 this.minStepsArray = new List<Segment>();
             }
@@ -48,7 +49,8 @@
             this.AddStep(a, b, mType);
             for (int j = 0; j < (N - 2); j++)
             {
-                if (Compare(mType, y1, y2))
+                addInfoList.Add(new AdditionInfo(j, 0));
+                if (this.Compare(mType, y1, y2))
                 {
                     b = x2;
                     x2 = x1;
@@ -73,28 +75,24 @@
 
             switch (mType)
             {
-                case MethodType.Minimum: this.Min = answer;
+                case SearchType.Minimum: this.Min = answer;
                     break;
-                case MethodType.Maximum: this.Max = answer;
+                case SearchType.Maximum: this.Max = answer;
                     break;
-                default: throw new Exception("Передан неверный тип значения");
-            }
-        }
-
-        private static bool Compare(MethodType mType, double y1, double y2)
-        {
-            switch (mType)
-            {
-                case MethodType.Minimum: return y1 < y2;
-                case MethodType.Maximum: return y1 > y2;
                 default: throw new Exception("Передан неверный тип значения");
             }
         }
 
         public override void FillInfoBlock()
         {
-            InfoBlock.message = "метод Фибоначчи";
-            this.infoBlock = new InfoBlock("a + 0,382( b - a )", "b - 0,382( b - a )", string.Empty);
+            this.infoBlock = new InfoBlock(
+                "метод Фибоначчи",
+                "a + 0,382( b - a )",
+                "b - 0,382( b - a )", 
+                string.Empty, 
+                string.Empty, 
+                string.Empty, 
+                string.Empty);
         }
     }
 }

@@ -101,17 +101,18 @@
 
         public string[] GetResults(SearchType mt)
         {
+            float t = this.Y(this.Min);
             return mt.HasFlag(SearchType.Minimum) ?
                 new string[2]
                     {
-                       this.Min.ToString().PadRight(7,'0'),
-                       this.Y(this.Min).ToString().PadRight(7,'0')
+                       Math.Round(this.Min, 4).ToString(),
+                       Math.Round(this.Y(this.Min), 4).ToString(),
                     }
             :
             new string[2]
                     {
-                       this.Max.ToString().PadRight(7,'0'),
-                       this.Y(this.Max).ToString().PadRight(7,'0')
+                       Math.Round(this.Max,4).ToString(),
+                       Math.Round(this.Y(this.Max),4).ToString()
                     };
         }
 

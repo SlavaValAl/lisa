@@ -89,6 +89,7 @@
                 }
 
                 if ((temp_cur <= 0) || (temp_cur >= 1)) throw new Exception("Неверный ввод! Точность задается в диапазоне от 0 до 1.");
+                if (temp_end >= temp_start) throw new Exception("Неверный ввод! Конечная точка должна быть больше начальной.");
 
                 var mt = rb_max.Checked ? SearchType.Maximum : SearchType.Minimum;
                 var funcNum = ((KeyValuePair<int, string>)cbFunctionType.SelectedItem).Key;
@@ -149,9 +150,9 @@
                 SwitchPanelVisibility();
 
                 //TODO
-                this.tb_res.Text = results_massiv[0].Substring(0, 7);
-                this.tb_func_res.Text = results_massiv[1].Substring(0, 7);
-                this.tb_stepnumber.Text = Form1.stepList.Count().ToString();
+                this.tb_res.Text = results_massiv[0];
+                this.tb_func_res.Text = results_massiv[1];
+                this.tb_stepnumber.Text = Form1.stepList.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -193,12 +194,13 @@
             int endIndex;
             int range;
             float[,] mas;
+            double accuracy = 0.001;
 
             for (int i = 0; i < stepList.Count; i++)
             {
                 var seg = stepList.ElementAt(i);
-                startIndex = 3 * Form1.searcheablePointList.FindIndex(el => Math.Abs(el.x - seg.x1) <= 0.001);
-                endIndex = 3 * Form1.searcheablePointList.FindIndex(el => Math.Abs(el.x - seg.x2) <= 0.001) + 2;
+                startIndex = 3 * Form1.searcheablePointList.FindIndex(el => Math.Abs(el.x - seg.x1) <= accuracy);
+                endIndex = 3 * Form1.searcheablePointList.FindIndex(el => Math.Abs(el.x - seg.x2) <= accuracy) + 2;
                 range = endIndex - startIndex + 1;
                 //эту хуйню так оставлять нельзя
                 mas = new float[range / 3, 3];
@@ -228,8 +230,7 @@
             float[,] start = new float[2, 3];
             float[,] end = new float[2, 3];
             Array.Copy(this.StepPointList.ElementAt(index), start, 3);
-            int tempmagic = (this.StepPointList.ElementAt(index).Length < 7) ? this.StepPointList.ElementAt(index).Length : this.StepPointList.ElementAt(index).Length - 7;
-            Array.Copy(this.StepPointList.ElementAt(index), tempmagic, end, 2, 3);
+            Array.Copy(this.StepPointList.ElementAt(index), this.StepPointList.ElementAt(index).Length - 3, end, 3, 3);
             //Array.Copy(this.StepPointList.ElementAt(index), this.StepPointList.ElementAt(index).Length - 7, end, 2, 3);
             start[1, 0] = start[0, 0];
             start[0, 1] = this.result.min;

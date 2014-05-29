@@ -19,11 +19,6 @@
             float y2 = 0;
             float delta = 0;
 
-            if (mType.HasFlag(SearchType.Minimum))
-            {
-                this.minStepsArray = new List<Segment>();
-            }
-
             this.AddStep(a, b, mType);
             addInfoList.Add(new AdditionInfo(0, e));
             while (b - a > e)
@@ -58,6 +53,11 @@
                     break;
                 default: throw new Exception("Передан неверный тип значения");
             }
+        }
+
+        protected override bool Compare(SearchType mType, float y1, float y2)
+        {
+            return (mType.HasFlag(SearchType.Minimum)) ? y1 > y2 : y1 < y2; 
         }
 
         public override void FillInfoBlock()

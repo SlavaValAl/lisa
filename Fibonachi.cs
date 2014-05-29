@@ -41,11 +41,6 @@
             AdditionInfo.N = N;
             AdditionInfo.Fn = IndexValueList.Last().Value;
 
-            if (mType.HasFlag(SearchType.Minimum))
-            {
-                this.minStepsArray = new List<Segment>();
-            }
-
             this.AddStep(a, b, mType);
             for (int j = 0; j < (N - 2); j++)
             {

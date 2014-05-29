@@ -17,10 +17,7 @@
             float x2;
             float y1;
             float y2;
-            if (mType.HasFlag(SearchType.Minimum))
-            {
-                this.minStepsArray = new List<Segment>();
-            }
+
             this.AddStep(a, b, mType);
             while (Math.Abs(b - a) > e)
             {

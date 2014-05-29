@@ -37,14 +37,9 @@
             return resultarray;
         }
 
-        protected bool Compare(SearchType mType, double y1, double y2)
+        protected virtual bool Compare(SearchType mType, float y1, float y2)
         {
-            switch (mType)
-            {
-                case SearchType.Minimum: return y1 < y2;
-                case SearchType.Maximum: return y1 > y2;
-                default: throw new Exception("Передан неверный тип значения");
-            }
+            return (mType.HasFlag(SearchType.Minimum)) ? y1 < y2 : y1 > y2;
         }
 
         public void SetValues(double start, double end, double cur, MyDel y)

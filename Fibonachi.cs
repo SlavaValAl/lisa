@@ -22,8 +22,8 @@
             float dx;
             float x1;
             float x2;
-            double y1;
-            double y2;
+            float y1;
+            float y2;
 
             de = (b - a) / e;
 

@@ -854,7 +854,6 @@
         private System.Windows.Forms.Button bt_stop;
         private System.Windows.Forms.Button bt_pause;
         private System.Windows.Forms.Button bt_start;
-        private System.Windows.Forms.Button bt_refresh;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tb_stepnumber;
         private System.Windows.Forms.TrackBar t_speed;

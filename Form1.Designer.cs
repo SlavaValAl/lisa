@@ -90,6 +90,7 @@
             this.l_x1 = new System.Windows.Forms.Label();
             this.lable2 = new System.Windows.Forms.Label();
             this.l_x2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.p_results.SuspendLayout();
@@ -247,25 +248,30 @@
             // 
             // tb_res
             // 
+            this.tb_res.BackColor = System.Drawing.Color.White;
+            this.tb_res.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_res.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tb_res.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(5)))), ((int)(((byte)(95)))));
-            this.tb_res.Location = new System.Drawing.Point(139, 8);
+            this.tb_res.Location = new System.Drawing.Point(156, 13);
             this.tb_res.Name = "tb_res";
             this.tb_res.ReadOnly = true;
-            this.tb_res.Size = new System.Drawing.Size(100, 21);
+            this.tb_res.Size = new System.Drawing.Size(83, 14);
             this.tb_res.TabIndex = 9;
             // 
             // tb_func_res
             // 
+            this.tb_func_res.BackColor = System.Drawing.Color.White;
+            this.tb_func_res.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_func_res.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(5)))), ((int)(((byte)(95)))));
-            this.tb_func_res.Location = new System.Drawing.Point(139, 38);
+            this.tb_func_res.Location = new System.Drawing.Point(156, 43);
             this.tb_func_res.Name = "tb_func_res";
             this.tb_func_res.ReadOnly = true;
-            this.tb_func_res.Size = new System.Drawing.Size(100, 21);
+            this.tb_func_res.Size = new System.Drawing.Size(83, 14);
             this.tb_func_res.TabIndex = 10;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.ilPanel1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
@@ -359,10 +365,12 @@
             // 
             // tb_stepnumber
             // 
-            this.tb_stepnumber.Location = new System.Drawing.Point(139, 68);
+            this.tb_stepnumber.BackColor = System.Drawing.Color.White;
+            this.tb_stepnumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_stepnumber.Location = new System.Drawing.Point(156, 73);
             this.tb_stepnumber.Name = "tb_stepnumber";
             this.tb_stepnumber.ReadOnly = true;
-            this.tb_stepnumber.Size = new System.Drawing.Size(100, 21);
+            this.tb_stepnumber.Size = new System.Drawing.Size(83, 14);
             this.tb_stepnumber.TabIndex = 32;
             // 
             // p_step
@@ -643,9 +651,9 @@
             this.p_fibonachi.Controls.Add(this.label11);
             this.p_fibonachi.Controls.Add(this.l_n);
             this.p_fibonachi.Controls.Add(this.l_Fn);
-            this.p_fibonachi.Location = new System.Drawing.Point(184, 75);
+            this.p_fibonachi.Location = new System.Drawing.Point(251, 81);
             this.p_fibonachi.Name = "p_fibonachi";
-            this.p_fibonachi.Size = new System.Drawing.Size(354, 44);
+            this.p_fibonachi.Size = new System.Drawing.Size(298, 53);
             this.p_fibonachi.TabIndex = 41;
             // 
             // label13
@@ -653,7 +661,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(133, 28);
+            this.label13.Location = new System.Drawing.Point(133, 26);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 15);
             this.label13.TabIndex = 35;
@@ -675,7 +683,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(133, 4);
+            this.label12.Location = new System.Drawing.Point(133, 2);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(32, 15);
             this.label12.TabIndex = 34;
@@ -697,7 +705,7 @@
             this.l_n.AutoSize = true;
             this.l_n.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.l_n.ForeColor = System.Drawing.Color.White;
-            this.l_n.Location = new System.Drawing.Point(171, 4);
+            this.l_n.Location = new System.Drawing.Point(171, 2);
             this.l_n.Name = "l_n";
             this.l_n.Size = new System.Drawing.Size(16, 15);
             this.l_n.TabIndex = 36;
@@ -768,6 +776,14 @@
             this.l_x2.Size = new System.Drawing.Size(16, 15);
             this.l_x2.TabIndex = 32;
             this.l_x2.Text = "   ";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Control;
+            this.panel3.Location = new System.Drawing.Point(408, 420);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(188, 23);
+            this.panel3.TabIndex = 1;
             // 
             // Form1
             // 
@@ -876,6 +892,7 @@
         private System.Windows.Forms.Panel p_fibonachi;
         private System.Windows.Forms.RichTextBox rtbInfo;
         private System.Windows.Forms.Panel p_dihotomy;
+        private System.Windows.Forms.Panel panel3;
 
     }
 }

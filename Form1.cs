@@ -89,7 +89,7 @@
                 }
 
                 if ((temp_cur <= 0) || (temp_cur >= 1)) throw new Exception("Неверный ввод! Точность задается в диапазоне от 0 до 1.");
-                if (temp_end >= temp_start) throw new Exception("Неверный ввод! Конечная точка должна быть больше начальной.");
+                if (temp_start >= temp_end) throw new Exception("Неверный ввод! Конечная точка должна быть больше начальной.");
 
                 var mt = rb_max.Checked ? SearchType.Maximum : SearchType.Minimum;
                 var funcNum = ((KeyValuePair<int, string>)cbFunctionType.SelectedItem).Key;
@@ -370,10 +370,10 @@
         {
             return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<int, string>(1,"x * x + 2 * x"),
-                new KeyValuePair<int, string>(2,"x * x - 2 * x"),
-                new KeyValuePair<int, string>(3,"x + 2 * x"),
-                new KeyValuePair<int, string>(4,"x - 2 * x"),
+                new KeyValuePair<int, string>(1,"x * x + 2 * x            (min)"),
+                new KeyValuePair<int, string>(2,"- x * x - 3 * x - 2     (max)"),
+                new KeyValuePair<int, string>(3,"2 + sech(x)            (max)"),
+                new KeyValuePair<int, string>(4,"4 - sech(x/0,25)     (min)"),
             };
         }
 
@@ -381,9 +381,10 @@
         {
             return new List<KeyValuePair<int, string>>(10)
             {
-                new KeyValuePair<int, string>(1,"Метод золотого сечения"),
-                new KeyValuePair<int, string>(2,"Фибоначчи"),
                 new KeyValuePair<int, string>(3,"Дихотомии"),
+                new KeyValuePair<int, string>(1,"Золотого сечения"),
+                new KeyValuePair<int, string>(2,"Фибоначчи"),
+                
             };
         }
 

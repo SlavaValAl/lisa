@@ -30,17 +30,17 @@
 
         private static float Function2(float x)
         {
-            return x * x - 2 * x;
+            return - x * x - 3 * x - 2;
         }
 
         private static float Function3(float x)
         {
-            return x + 2 * x;
+            return (float)( 2 + (1 / Math.Cosh(x))  ) ;
         }
 
         private static float Function4(float x)
         {
-            return x - 2 * x;
+            return (float)( 4  - ( 1 / Math.Cosh(x/0.25)) );
         }
     }
 }

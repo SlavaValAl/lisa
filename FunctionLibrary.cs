@@ -30,7 +30,7 @@
 
         private static float Function2(float x)
         {
-            return x * x - 2 * x;
+            return - 3 * x * x + 2 * x;
         }
 
         private static float Function3(float x)

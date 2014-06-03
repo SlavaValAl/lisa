@@ -29,6 +29,8 @@
         static List<Segment> stepList;
         public static List<Point> searcheablePointList;
 
+       
+
         public Form1()
         {
             this.InitializeComponent();
@@ -89,7 +91,7 @@
                 }
 
                 if ((temp_cur <= 0) || (temp_cur >= 1)) throw new Exception("Неверный ввод! Точность задается в диапазоне от 0 до 1.");
-                if (temp_end >= temp_start) throw new Exception("Неверный ввод! Конечная точка должна быть больше начальной.");
+                if ( temp_start >= temp_end) throw new Exception("Неверный ввод! Конечная точка должна быть больше начальной.");
 
                 var mt = rb_max.Checked ? SearchType.Maximum : SearchType.Minimum;
                 var funcNum = ((KeyValuePair<int, string>)cbFunctionType.SelectedItem).Key;
@@ -365,13 +367,13 @@
             }
             this.drawingProcessFlag = false;
         }
-
+                
         private List<KeyValuePair<int, string>> GetFunctionList()
         {
             return new List<KeyValuePair<int, string>>(10)
             {
                 new KeyValuePair<int, string>(1,"x * x + 2 * x"),
-                new KeyValuePair<int, string>(2,"x * x - 2 * x"),
+                new KeyValuePair<int, string>(2,"-3 * x * x + 2 * x"),
                 new KeyValuePair<int, string>(3,"x + 2 * x"),
                 new KeyValuePair<int, string>(4,"x - 2 * x"),
             };

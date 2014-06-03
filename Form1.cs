@@ -107,7 +107,6 @@
                 this.result.min = this.calcmt.GetYbyX(this.calcmt.Min) - 1;
                 this.result.max = this.calcmt.GetYbyX(this.calcmt.Max) + 1;
 
-                //some magic
                 this.pointList = this.calcmt.GetPoints();
                 Form1.stepList = this.calcmt.GetSteps(mt);
                 this.FillStepPointRangeList(temp_cur);
@@ -115,7 +114,6 @@
                 //StepPointList = calcmt.TreatLastElement(StepPointList);
                 this.DrawGraph(this.index);
                 this.TurnOnControlButton();
-                //some magic
                 this.rtbInfo.Text = this.calcmt.infoBlock.message;
 
 
@@ -152,7 +150,6 @@
 
                 SwitchPanelVisibility();
 
-                //TODO
                 this.tb_res.Text = results_massiv[0];
                 this.tb_func_res.Text = results_massiv[1];
                 this.tb_stepnumber.Text = Form1.stepList.Count.ToString();
@@ -234,7 +231,6 @@
             float[,] end = new float[2, 3];
             Array.Copy(this.StepPointList.ElementAt(index), start, 3);
             Array.Copy(this.StepPointList.ElementAt(index), this.StepPointList.ElementAt(index).Length - 3, end, 3, 3);
-            //Array.Copy(this.StepPointList.ElementAt(index), this.StepPointList.ElementAt(index).Length - 7, end, 2, 3);
             start[1, 0] = start[0, 0];
             start[0, 1] = this.result.min;
             start[1, 1] = this.result.max;
@@ -260,7 +256,6 @@
     };
             this.ilPanel1.Scene = SetScaleModes(scene);
             this.ilPanel1.Invoke(new newDel(() => ilPanel1.Refresh()));
-            this.RedrawBoundaryElements(index);
         }
 
         private void RedrawBoundaryElements(int index)
@@ -286,6 +281,7 @@
             this.bt_nextStep.Enabled = true;
             this.index = 0;
             this.DrawGraph(this.index);
+            this.RedrawBoundaryElements(this.index);
         }
 
         private void bt_previousStep_Click(object sender, EventArgs e)
@@ -294,6 +290,7 @@
             this.bt_nextStep.Enabled = true;
             this.bt_previousStep.Enabled = (this.index == 0) ? false : true;
             this.DrawGraph(this.index);
+            this.RedrawBoundaryElements(this.index);
         }
 
         private void bt_nextStep_Click(object sender, EventArgs e)
@@ -302,6 +299,7 @@
             this.bt_previousStep.Enabled = true;
             this.bt_nextStep.Enabled = (this.index == StepPointList.Count - 1) ? false : true;
             this.DrawGraph(this.index);
+            this.RedrawBoundaryElements(this.index);
         }
 
         private void bt_lastStep_Click(object sender, EventArgs e)
@@ -310,6 +308,7 @@
             this.bt_nextStep.Enabled = false;
             this.bt_previousStep.Enabled = true;
             this.DrawGraph(this.index);
+            this.RedrawBoundaryElements(this.index);
         }
 
         private void bt_stop_Click(object sender, EventArgs e)
